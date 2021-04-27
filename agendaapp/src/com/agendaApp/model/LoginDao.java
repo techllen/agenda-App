@@ -17,10 +17,10 @@ public class LoginDao {
 	boolean status = false;
 
 	public boolean validatelogin(User user) {
+		Connection connection = null;
+		PreparedStatement stmt=null;
 		String enteredusername = user.getUsername();
 		String enteredpassword = user.getPassword();
-		
-		Connection connection = null;
 
 		try {
 			//registering JDBC Driver
@@ -30,30 +30,36 @@ public class LoginDao {
 			//opening a connection
 			connection = DriverManager.getConnection(DB_URL,USER,PASS);
 
-			//making a parameterized prepared statement
-			String query = "select * from users where username = ? and password = ? ";
-			//String query = "select * from users";
+			//making a parameterized prepared statement and executing a query
+			//String sqlq= "SELECT * FROM users WHERE username = ? and password = ?";
+			String sqlq= "SELECT * FROM users WHERE username = ?;";
 
+			stmt= connection.prepareStatement(sqlq);
+            
+			//Bind values into the parameters
+			stmt.setString(1,"matare");
+			//stmt.setString(2, "enteredpassword");
 			
-			PreparedStatement preparedStatement= connection.prepareStatement(query);
+			//stmt.setString(1, "go");
+			//stmt.setString(2, "go");
 
-			preparedStatement.setString(1, enteredusername);
-			preparedStatement.setString(2, enteredpassword);
-			//Execute a query
-
-			ResultSet rs = preparedStatement.executeQuery();
+			//selecting the specific user
+			ResultSet rs = stmt.executeQuery(sqlq);
 
 			//extract data from resultset
-			status =rs.next();
+			//status =rs.next();
+			//System.out.println(enteredpassword + "  "+ enteredusername);
 			while(rs.next()) {
-				System.out.println(rs.getString("username"));
+				
+				String retrievedusername = rs.getString("username");
+				String retrievedpassword = rs.getString("password");
+				
+				System.out.println(retrievedusername +"    "+ retrievedpassword);
 			}
 
 			//SClean-up environment
-			System.out.println("matare");
-
 			rs.close();
-			preparedStatement.close();
+			stmt.close();
 			connection.close();
 		}catch(SQLException se){
 			//Handle errors for JDBC
@@ -77,7 +83,7 @@ public class LoginDao {
 
 	public static void main(String[] args) {
 		LoginDao login = new LoginDao();
-		User us = new User("matare21", "matare");
+		User us = new User("matare", "matare");
 				login.validatelogin(us);
 	}
 
