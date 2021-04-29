@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.agendaApp.model.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,30 +24,24 @@
     <div class="app">
         <div class="topbar">
             <div class="row">
-                <div class="col-sm-2">
-                </div>
-                <div class="appname col-sm-10">
+                <div class="appname col-sm-12">
                     AGENDA
                 </div>
             </div>
         </div>
 
         <!-- things we can do -->
-        <div class="sidenav">
-            <div class="row">
-                <div class="menu col-sm-2">
-                    <a href="${updateactivity.jsp}">Update Activity</a>
-                    <a href="${viewactivity.jsp}">View Activities</a>
-                </div>
-                <div class="col-sm-10">
-                    <div class="content">
-                        <p>Welcome to myAgenda App</p>
-                        <p>What can we do for you?</p>
-                        <p>Anything in your mind for today!!!?</p>
-                    </div>
-
-                </div>
-            </div>
+        <div class="login container">
+            <p>User registration</p><br>
+            <p>Please enter your email,username and password to register</p><br>
+            <label for="eaddress">Email address</label><br><br>
+            <input type="email" id="eaddress" name="eaddress" required><br><br>
+            <label for="username">Username</label><br><br>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password</label><br><br>
+            <input type="text" id="password" name="password" required><br><br>
+            <input type="submit">
+            
         </div>
         <!--footer-->
         <div class="footer">

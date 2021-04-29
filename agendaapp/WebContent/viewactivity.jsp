@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.agendaApp.model.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,7 @@
     <!-- ProjectOwn Exteranal CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
 
-    <title>AgendaApp</title>
+    <title>View activities</title>
 </head>
 
 <body>
@@ -37,14 +36,36 @@
         <div class="sidenav">
             <div class="row">
                 <div class="menu col-sm-2">
-                    <a href="${updateactivity.jsp}">Update Activity</a>
-                    <a href="${viewactivity.jsp}">View Activities</a>
+                    <a href="/index.html">Home</a>
+                    <a href="/addactivity.html">Add Activity</a>
+                    <a href="/updateactivity.html">Update Activity</a>
+                    <a href="/viewactivity.html">View Activities</a>
                 </div>
                 <div class="col-sm-10">
-                    <div class="content">
-                        <p>Welcome to myAgenda App</p>
-                        <p>What can we do for you?</p>
-                        <p>Anything in your mind for today!!!?</p>
+                    <div class="content-viewactivity">
+                        <p>Activities to update</p><br><br>
+
+                        <table>
+                            <tr>
+                                <th>Activity Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>State of the activity</th>
+                            </tr>
+                            <tr>
+                                <td>Doing cooking class</td>
+                                <td>12/09/2021</td>
+                                <td>17/09/2021</td>
+                                <td>Beginning</td>
+                            </tr>
+                            <tr>
+                                <td>Doing html class</td>
+                                <td>13/09/2021</td>
+                                <td>18/09/2021</td>
+                                <td>Beginning</td>
+                            </tr>
+                        </table>
+                        
                     </div>
 
                 </div>

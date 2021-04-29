@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.agendaApp.model.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,7 @@
     <!-- ProjectOwn Exteranal CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
 
-    <title>AgendaApp</title>
+    <title>Add Activity</title>
 </head>
 
 <body>
@@ -33,18 +32,28 @@
             </div>
         </div>
 
-        <!-- things we can do -->
+        <!-- Menu -->
         <div class="sidenav">
             <div class="row">
                 <div class="menu col-sm-2">
-                    <a href="${updateactivity.jsp}">Update Activity</a>
-                    <a href="${viewactivity.jsp}">View Activities</a>
+                    <a href="/index.html">Home</a>
+                    <a href="/addactivity.html">Add Activity</a>
+                    <a href="/updateactivity.html">Update Activity</a>
+                    <a href="/viewactivity.html">View Activities</a>
                 </div>
+        <!-- Contents -->
                 <div class="col-sm-10">
-                    <div class="content">
-                        <p>Welcome to myAgenda App</p>
-                        <p>What can we do for you?</p>
-                        <p>Anything in your mind for today!!!?</p>
+                    <div class="content-addactivity">
+                        <p>Whats on your mind for today</p>
+                        <form action="">
+                            <label for="description">Please describe what you are planning to do</label><br>
+                            <input style="height: 100px;" id="description" name="description" maxlength="250" size="70"><br>
+                            <label for="startdate">Please enter start date and time</label><br>
+                            <input type="date" id="startdate" name="startdate" required><br>
+                            <label for="enddate">Please enter end date and time</label><br>
+                            <input type="date" id="enddate" name="enddate" required><br>
+                            <input type="submit">
+                        </form>
                     </div>
 
                 </div>
