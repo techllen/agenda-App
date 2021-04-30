@@ -2,46 +2,6 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN" "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
 <web-app id="WebApp_ID">
 	<display-name>agendaapp</display-name>
-	<servlet>
-		<servlet-name>LoginServlet</servlet-name>
-		<display-name>LoginServlet</display-name>
-		<description></description>
-		<servlet-class>com.agendaApp.controller.LoginServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>LoginServlet1</servlet-name>
-		<display-name>LoginServlet1</display-name>
-		<description></description>
-		<servlet-class>com.agendaApp.controller.LoginServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>Login_Servlet</servlet-name>
-		<display-name>Login_Servlet</display-name>
-		<description>Login</description>
-		<servlet-class>com.agendaApp.controller.LoginServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>OperationController</servlet-name>
-		<display-name>OperationController</display-name>
-		<description></description>
-		<servlet-class>com.agendaApp.controller.OperationController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/LoginServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>LoginServlet1</servlet-name>
-		<url-pattern>/LoginServlet1</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Login_Servlet</servlet-name>
-		<url-pattern>/Login_Servlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>OperationController</servlet-name>
-		<url-pattern>/OperationController</url-pattern>
-	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
