@@ -1,4 +1,4 @@
-package com.agendaApp.controller;
+package com.techllenapps.agendaapp.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.agendaApp.entity.User;
-import com.agendaApp.model.LoginDao;
+import com.techllenapps.agendaapp.entity.User;
+import com.techllenapps.agendaapp.model.LoginDao;
 
 /**
  * Matare

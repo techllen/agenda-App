@@ -1,8 +1,8 @@
-package com.agendaApp.model;
+package com.techllenapps.agendaapp.model;
 
 import java.sql.*;
 
-import com.agendaApp.entity.User;
+import com.techllenapps.agendaapp.entity.User;
 
 public class LoginDao {
 

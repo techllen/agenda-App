@@ -1,4 +1,4 @@
-package com.agendaApp.entity;
+package com.techllenapps.agendaapp.entity;
 
 import java.util.Date;
 

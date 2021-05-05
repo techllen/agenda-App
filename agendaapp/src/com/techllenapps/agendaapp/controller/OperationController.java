@@ -1,4 +1,4 @@
-package com.agendaApp.controller;
+package com.techllenapps.agendaapp.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
