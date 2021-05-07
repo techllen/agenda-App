@@ -37,12 +37,12 @@
 			<br>
 			<p>Please enter your username and password</p>
 			<br>
-			<form action="${request.getContextPath}/loginAndRegister" method="post">
+			<form action="${pageContext.request.contextPath}/loginAndRegister" method="post">
 				<label for="username">Username</label><br>
-				<br> <input type="text" id="username" name="username" required><br>
+				<br> <input type="text" id="username" name="username" value="${param.username}" required/><br>
 				<br> <label for="password">Password</label><br>
-				<br> <input type="password" id="password" name="password" required><br>
-				<br><input type="hidden" name="form" value="login"><br>
+				<br> <input type="password" id="password" name="password" value="${param.password}" required/><br>
+				<br><input type="hidden" name="form" value="login"/><br>
 				<br> <input type="submit">
 			</form>
 
