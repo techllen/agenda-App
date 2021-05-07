@@ -34,14 +34,16 @@
         <div class="login container">
             <p>User registration</p><br>
             <p>Please enter your email,username and password to register</p><br>
+            <form action="${request.getContextPath}/loginAndRegister">
             <label for="eaddress">Email address</label><br><br>
             <input type="email" id="eaddress" name="eaddress" required><br><br>
             <label for="username">Username</label><br><br>
             <input type="text" id="username" name="username" required><br><br>
             <label for="password">Password</label><br><br>
             <input type="text" id="password" name="password" required><br><br>
+            <br><input type="hidden" name="form" value="register"><br>
             <input type="submit">
-            
+            </form>
         </div>
         <!--footer-->
         <div class="footer">

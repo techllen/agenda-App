@@ -4,11 +4,11 @@ import java.sql.*;
 
 import com.techllenapps.agendaapp.entity.User;
 
-public class registerDao {
+public class RegisterDao {
 
 	//JDBC Driver name and database URL
 	final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
-	final String DB_URL = "jdbc:mysql://localhost:3306/users_db?useSSL=false";
+	final String DB_URL = "jdbc:mysql://localhost:3306/agendaapp_db?useSSL=false";
 
 	//Database credentials
 	final String USER = "root";

@@ -37,11 +37,12 @@
 			<br>
 			<p>Please enter your username and password</p>
 			<br>
-			<form action="<%=request.getContextPath()%>/login" method="post">
+			<form action="${request.getContextPath}/loginAndRegister" method="post">
 				<label for="username">Username</label><br>
 				<br> <input type="text" id="username" name="username" required><br>
 				<br> <label for="password">Password</label><br>
 				<br> <input type="password" id="password" name="password" required><br>
+				<br><input type="hidden" name="form" value="login"><br>
 				<br> <input type="submit">
 			</form>
 
