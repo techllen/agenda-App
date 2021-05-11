@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.techllenapps.agendaapp.entity.User;
 import com.techllenapps.agendaapp.model.LoginDao;
 import com.techllenapps.agendaapp.model.RegisterDao;
@@ -13,8 +15,8 @@ import com.techllenapps.agendaapp.model.RegisterDao;
 /**
  * THE-Allen
  */
-@WebServlet("/loginAndRegister")
-public class UserOperation extends HttpServlet {
+@WebServlet("/login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	User user = new User();
 	LoginDao logindao = new LoginDao();
@@ -32,11 +34,18 @@ public class UserOperation extends HttpServlet {
 			//linking parameters to the class user
 			user.setUsername(username);
 			user.setPassword(password);
-			if (login(user)==false) {
-				loginUser(request, response);
+			//calling the dao method to validate the user the user 
+			//the method logindao returns false when only unique row for the user is present
+			//using the .next method
+			if (logindao.validatelogin(user)==false) {
+				//after validating set the session which will include attribute for this user
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				//after validating open the home page for the user
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 			else {
-				loginerror(request,response);
+				request.getRequestDispatcher("loginerror.jsp").forward(request, response);
 			}
 			break;
 
@@ -45,28 +54,11 @@ public class UserOperation extends HttpServlet {
 			break;
 
 		default:
-			error(request,response);
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
 
-
-	private boolean login(User user) {
-		//calling the dao method to validate the user the user
-		boolean status=logindao.validatelogin(user);
-		//checking if the user is in the system
-		return status;
-	}
-
-	public void loginUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-	}
-	
-	public void loginerror(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("loginerror.jsp").forward(request, response);
-	}
-
 	public void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("error.jsp").forward(request, response);
 	}
 
 }

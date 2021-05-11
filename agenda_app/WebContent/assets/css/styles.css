@@ -117,7 +117,7 @@ table tr {
     height: 40px;
 }
 
-.update-button {
+.update-button{
     border-radius: 4px;
     background-color: #0099ff;
     height: 30px;
@@ -153,4 +153,13 @@ table tr:nth-child(odd) {
 
 table tr {
     height: 40px;
+}
+
+/*Login errot*/
+.try-again-button{
+	border-radius: 4px;
+    background-color: #0099ff;
+    height: 30px;
+    width: 80px;
+    font-size: 15px;
 }

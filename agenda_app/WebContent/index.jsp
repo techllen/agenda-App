@@ -39,7 +39,7 @@
                 <div class="menu col-sm-2">
                     <a href="${pageContext.request.contextPath}/operation?page=updateactivity">Update Activity</a>
                     <a href="${pageContext.request.contextPath}/operation?page=viewactivity">View Activities</a>
-                    
+                    <a href="${pageContext.request.contextPath}/logout">Logout</a>        
                 </div>
                 <div class="col-sm-10">
                     <div class="content">

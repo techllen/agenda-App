@@ -39,22 +39,7 @@
 					<div class="content">
 						<p>Oooooooops!!!!</p>
 						<p>Please check your username and password</p>
-					</div>
-					<div class="login container">
-						<br>
-						<p>Please enter your username and password</p>
-						<br>
-						<form action="${pageContext.request.contextPath}/loginAndRegister"
-							method="post">
-							<label for="username">Username</label><br> <br> <input
-								type="text" id="username" name="username"
-								value="${param.username}" required /><br> <br> <label
-								for="password">Password</label><br> <br> <input
-								type="password" id="password" name="password"
-								value="${param.password}" required /><br> <br>
-							<input type="hidden" name="form" value="login" /><br> <br>
-							<input type="submit">
-						</form>
+						<br><a href="./login.jsp"><button  class="try-again-button"type="submit">Try Again</button></a>
 					</div>
 				</div>
 			</div>
