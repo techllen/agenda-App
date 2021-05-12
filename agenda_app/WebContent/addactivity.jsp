@@ -36,23 +36,27 @@
         <div class="sidenav">
             <div class="row">
                 <div class="menu col-sm-2">
-                    <a href="/index.html">Home</a>
-                    <a href="/addactivity.html">Add Activity</a>
-                    <a href="/updateactivity.html">Update Activity</a>
-                    <a href="/viewactivity.html">View Activities</a>
+                        <!-- page names will determine which operation is being executed by JSP -->
+                    <a href="${pageContext.request.contextPath}/operation?page=addactivity">Add Activity</a>
+                    <a href="${pageContext.request.contextPath}/operation?page=updateactivity">Update Activity</a>
+                    <a href="${pageContext.request.contextPath}/operation?page=viewactivity">View Activities</a>
+                    <a href="${pageContext.request.contextPath}/logout">Logout</a>
                 </div>
         <!-- Contents -->
                 <div class="col-sm-10">
                     <div class="content-addactivity">
                         <p>Whats on your mind for today</p>
-                        <form action="">
+                        <form action="${pageContext.request.contextPath}/operation">
+                        	<label for="tittle">Please enter the name of the activity</label><br>
+                            <input style="height: 30px;" id="tittle" name="tittle" maxlength="50" size="50"><br>
                             <label for="description">Please describe what you are planning to do</label><br>
                             <input style="height: 100px;" id="description" name="description" maxlength="250" size="70"><br>
                             <label for="startdate">Please enter start date and time</label><br>
                             <input type="date" id="startdate" name="startdate" required><br>
                             <label for="enddate">Please enter end date and time</label><br>
-                            <input type="date" id="enddate" name="enddate" required><br>
-                            <input type="submit">
+                            <input type="date" id="enddate" name="enddate" required><br><br><br>
+                        	<input type="hidden" name="form" value="addactivity"/><br>
+                            <button type="submit">Add</button>
                         </form>
                     </div>
 

@@ -156,7 +156,7 @@ table tr {
 }
 
 /*Login errot*/
-.try-again-button{
+button .try-again-button{
 	border-radius: 4px;
     background-color: #0099ff;
     height: 30px;

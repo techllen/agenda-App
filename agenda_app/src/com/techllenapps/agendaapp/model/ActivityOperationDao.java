@@ -1,10 +1,12 @@
 package com.techllenapps.agendaapp.model;
 
 import java.sql.*;
+import java.util.Date;
 
+import com.techllenapps.agendaapp.entity.Activity;
 import com.techllenapps.agendaapp.entity.User;
 
-public class RegisterDao {
+public class ActivityOperationDao {
 
 	//JDBC Driver name and database URL
 	final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
@@ -16,13 +18,15 @@ public class RegisterDao {
 
 
 
-	public int regsiterUser(User user) throws ClassNotFoundException {
+	public int addActivity(Activity act) throws ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement stmt=null;
 		int result=0;
-		String enteredEmail = user.getEmail();
-		String enteredUsername = user.getUsername();
-		String enteredPassword = user.getPassword();
+		String enteredTittle = act.getTittle();
+		String enteredDescription= act.getDescription();
+		String enteredStatus = act.getStatus();
+		Date enteredStartDate = act.getStartDate();
+		Date enteredEndDate = act.getEndDate();
 
 		try {
 			//registering JDBC Driver
@@ -39,9 +43,12 @@ public class RegisterDao {
 			stmt= connection.prepareStatement(sqlq);
 
 			//Bind values into the parameters
-			stmt.setString(1,enteredEmail);
-			stmt.setString(2,enteredUsername);
-			stmt.setString(3,enteredPassword);
+			stmt.setString(1,enteredTittle);
+			stmt.setString(2,enteredDescription);
+			stmt.setDate(3,enteredEndDate);
+			stmt.setString(4,enteredStatus);
+			stmt.setDate(5,java.sql.Timestamp(enteredStartDate));
+
 			
 			//adding a user by running the query to update the table
 			result = stmt.executeUpdate();

@@ -36,10 +36,11 @@
         <div class="sidenav">
             <div class="row">
                 <div class="menu col-sm-2">
-                    <a href="/index.html">Home</a>
-                    <a href="/addactivity.html">Add Activity</a>
-                    <a href="/updateactivity.html">Update Activity</a>
-                    <a href="/viewactivity.html">View Activities</a>
+                     <!-- page names will determine which operation is being executed by JSP -->
+                    <a href="${pageContext.request.contextPath}/operation?page=addactivity">Add Activity</a>
+                    <a href="${pageContext.request.contextPath}/operation?page=updateactivity">Update Activity</a>
+                    <a href="${pageContext.request.contextPath}/operation?page=viewactivity">View Activities</a>
+                    <a href="${pageContext.request.contextPath}/logout">Logout</a>
                 </div>
                 <div class="col-sm-10">
                     <div class="content-updateactivity">
@@ -51,7 +52,7 @@
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>State of the activity</th>
-                                <th>Update</th>
+                                <th>Action</th>
                             </tr>
                             <tr>
                                 <td>Doing cooking class</td>
