@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.Date;
 
 import com.techllenapps.agendaapp.entity.Activity;
-import com.techllenapps.agendaapp.entity.User;
 
 public class ActivityOperationDao {
 
@@ -24,7 +23,6 @@ public class ActivityOperationDao {
 		int result=0;
 		String enteredTittle = act.getTittle();
 		String enteredDescription= act.getDescription();
-		String enteredStatus = act.getStatus();
 		Date enteredStartDate = act.getStartDate();
 		Date enteredEndDate = act.getEndDate();
 
@@ -37,19 +35,19 @@ public class ActivityOperationDao {
 			connection = DriverManager.getConnection(DB_URL,USER,PASS);
 
 			//making a  prepared statement and executing a query
-			String sqlq= "INSERT INTO user" +
-					"  (email,username,password) VALUES " +
-					" (?, ?, ?);";
+			String sqlq= "INSERT INTO activities" +
+					"  (tittle,description,start_date,end_date) VALUES " +
+					" (?, ?, ?,?);";
 			stmt= connection.prepareStatement(sqlq);
 
 			//Bind values into the parameters
 			stmt.setString(1,enteredTittle);
 			stmt.setString(2,enteredDescription);
-			stmt.setDate(3,enteredEndDate);
-			stmt.setString(4,enteredStatus);
-			stmt.setDate(5,java.sql.Timestamp(enteredStartDate));
-
-			
+			java.sql.Date sqlStartDate = new java.sql.Date(enteredStartDate.getTime());
+			stmt.setDate(5,sqlStartDate);
+		    java.sql.Date sqlEndDate = new java.sql.Date(enteredEndDate.getTime());
+			stmt.setDate(3,sqlEndDate);
+		    			
 			//adding a user by running the query to update the table
 			result = stmt.executeUpdate();
 

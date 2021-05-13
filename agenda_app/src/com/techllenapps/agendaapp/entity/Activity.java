@@ -10,10 +10,16 @@ public class Activity {
 	private Date endDate;
 	
 	public Activity(String tittle, String description, String status, Date startDate, Date endDate) {
-		super();
 		this.tittle = tittle;
 		this.description = description;
 		this.status = status;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	
+	public Activity(String tittle, String description, Date startDate, Date endDate) {
+		this.tittle = tittle;
+		this.description = description;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}

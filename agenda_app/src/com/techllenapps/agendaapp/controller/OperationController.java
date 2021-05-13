@@ -37,7 +37,6 @@ public class OperationController extends HttpServlet {
 			//getting parameters from the form
 			String tittle = request.getParameter("tittle");
 			String description = request.getParameter("description");
-			String status = request.getParameter("status");
 			//converting dates
 			SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
 			//getting date parameters from the form
@@ -56,11 +55,16 @@ public class OperationController extends HttpServlet {
 			}
 					
 			//setting parameters to the object using constructor
-			Activity act = new Activity(tittle, description, status, startDatefmtd, endDatefmtd);
+			Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
 			
 			//validating and adding activity
 			try {
-				aact.addActivity(act);
+				if (aact.addActivity(act)==1) {
+					request.getRequestDispatcher("addactivity.jsp").forward(request, response);
+				}
+				else {
+					error(request,response);
+				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
