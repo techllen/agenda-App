@@ -38,7 +38,7 @@ public class OperationController extends HttpServlet {
 			String tittle = request.getParameter("tittle");
 			String description = request.getParameter("description");
 			//converting dates
-			SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
 			//getting date parameters from the form
 			String startDate = request.getParameter("startdate");
 			String endDate = request.getParameter("enddate");
@@ -50,7 +50,6 @@ public class OperationController extends HttpServlet {
 				endDatefmtd= formatter.parse(endDate);
 
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 					
@@ -58,9 +57,10 @@ public class OperationController extends HttpServlet {
 			Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
 			
 			//validating and adding activity
+			//if the activity is added go back to the add activity page
 			try {
 				if (aact.addActivity(act)==1) {
-					request.getRequestDispatcher("addactivity.jsp").forward(request, response);
+					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 				else {
 					error(request,response);
@@ -70,7 +70,7 @@ public class OperationController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			addActivity(request,response);
+			//addActivity(request,response);
 			break;
 				
 		case "updateactivity":
@@ -88,13 +88,13 @@ public class OperationController extends HttpServlet {
 	}
 
 
-	private void addActivity(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			request.getRequestDispatcher("addactivity.jsp").forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	private void addActivity(HttpServletRequest request, HttpServletResponse response) {
+//		try {
+//			request.getRequestDispatcher("addactivity.jsp").forward(request, response);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	private void updateActivity(HttpServletRequest request, HttpServletResponse response) {
 		try {

@@ -44,9 +44,9 @@ public class ActivityOperationDao {
 			stmt.setString(1,enteredTittle);
 			stmt.setString(2,enteredDescription);
 			java.sql.Date sqlStartDate = new java.sql.Date(enteredStartDate.getTime());
-			stmt.setDate(5,sqlStartDate);
+			stmt.setDate(3,sqlStartDate);
 		    java.sql.Date sqlEndDate = new java.sql.Date(enteredEndDate.getTime());
-			stmt.setDate(3,sqlEndDate);
+			stmt.setDate(4,sqlEndDate);
 		    			
 			//adding a user by running the query to update the table
 			result = stmt.executeUpdate();
