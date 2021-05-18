@@ -14,7 +14,7 @@
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <!-- ProjectOwn Exteranal CSS -->
-    <link rel="stylesheet" href="assts/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
 
     <title>Add Activity</title>
 </head>
@@ -59,8 +59,8 @@
                                 <option value="work in progress">Work in progress</option>
                                 <option value="halted">Stopped for now</option>
                                 <option value="finished">Finished</option>
-                            </select><br>
-                            <input type="submit">
+                            </select><br> <br>
+                            <button type="submit"> Update</button>
                         </form>
                     </div>
 

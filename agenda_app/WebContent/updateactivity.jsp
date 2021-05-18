@@ -14,7 +14,7 @@
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <!-- ProjectOwn Exteranal CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
 
     <title>Update Activity</title>
 </head>
@@ -37,10 +37,10 @@
             <div class="row">
                 <div class="menu col-sm-2">
                      <!-- page names will determine which operation is being executed by JSP -->
-                    <a href="${pageContext.request.contextPath}/operation?page=addactivity">Add Activity</a>
-                    <a href="${pageContext.request.contextPath}/operation?page=updateactivity">Update Activity</a>
-                    <a href="${pageContext.request.contextPath}/operation?page=viewactivity">View Activities</a>
-                    <a href="${pageContext.request.contextPath}/logout">Logout</a>
+                    <a href="./addactivity.jsp">Add Activity</a>
+                    <a href="./updateactivity.jsp">Update Activity</a>
+                    <a href="./viewactivity.jsp">View Activities</a>
+                    <a href="${pageContext.request.contextPath}/logout">Logout</a>  
                 </div>
                 <div class="col-sm-10">
                     <div class="content-updateactivity">
@@ -48,6 +48,7 @@
 
                         <table>
                             <tr>
+                            	<th>Activity Name</th>
                                 <th>Activity Description</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
@@ -56,17 +57,11 @@
                             </tr>
                             <tr>
                                 <td>Doing cooking class</td>
+                                <td>Doing cooking class</td>
                                 <td>12/09/2021</td>
                                 <td>17/09/2021</td>
                                 <td>Beginning</td>
-                                <td style="text-align:center"><a href="/updateactivitypage.html"><button class="update-button">Update</button>/<button class="update-button">Delete</button></a></td>
-                            </tr>
-                            <tr>
-                                <td>Doing html class</td>
-                                <td>13/09/2021</td>
-                                <td>18/09/2021</td>
-                                <td>Beginning</td>
-                                <td style="text-align:center" ><a href="/updateactivitypage.html"><button class="update-button">Update</button>/<button class="update-button">Delete</button></a></td>
+                                <td style="text-align:center"><a href="./updateactivitypage.jsp"><button class="update-button">Update</button>/<button class="update-button">Delete</button></a></td>
                             </tr>
                         </table>
                         

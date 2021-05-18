@@ -1,7 +1,10 @@
 package com.techllenapps.agendaapp.model;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
+
+import org.studyeasy.entity.User;
 
 import com.techllenapps.agendaapp.entity.Activity;
 
@@ -14,13 +17,14 @@ public class ActivityOperationDao {
 	//Database credentials
 	final String USER = "root";
 	final String PASS = "@Mysql21";
-
-
+	//connection objects
+	Connection connection = null;
+	PreparedStatement stmt=null;
 
 	public int addActivity(Activity act) throws ClassNotFoundException {
-		Connection connection = null;
-		PreparedStatement stmt=null;
+		//local connection object
 		int result=0;
+		//getting parameters from object
 		String enteredTittle = act.getTittle();
 		String enteredDescription= act.getDescription();
 		Date enteredStartDate = act.getStartDate();
@@ -45,9 +49,9 @@ public class ActivityOperationDao {
 			stmt.setString(2,enteredDescription);
 			java.sql.Date sqlStartDate = new java.sql.Date(enteredStartDate.getTime());
 			stmt.setDate(3,sqlStartDate);
-		    java.sql.Date sqlEndDate = new java.sql.Date(enteredEndDate.getTime());
+			java.sql.Date sqlEndDate = new java.sql.Date(enteredEndDate.getTime());
 			stmt.setDate(4,sqlEndDate);
-		    			
+
 			//adding a user by running the query to update the table
 			result = stmt.executeUpdate();
 
@@ -56,6 +60,43 @@ public class ActivityOperationDao {
 			se.printStackTrace();
 		}
 		return result;
+
+	}
+
+	public ArrayList<Activity> viewActivity(){
+		//Local connection object
+		ArrayList<Activity> activities = new ArrayList<Activity>();
+		ResultSet rs = null;
+		try {
+			//registering JDBC Driver
+			Class.forName(JDBC_DRIVER);
+
+			//opening a connection
+			connection = DriverManager.getConnection(DB_URL,USER,PASS);
+
+			//making a  prepared statement and executing a query
+			String sqlq= "SELECT * from activities" +
+					"  (tittle,description,start_date,end_date) VALUES " +
+					" (?, ?, ?,?);";
+			stmt= connection.prepareStatement(sqlq);
+
+			//selecting all records
+			rs = stmt.executeQuery();
+			
+			//extracting data from resultset and bind them to the activity object
+			//for display
+			while(rs.next()){
+				activities.add(new Activity(rs.getString("tittle"), rs.getString("description"), rs.getDate("start_date"),rs.getDate("End_date")));
+			}	
+
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// handles error for jdbc driver class
+			e.printStackTrace();
+		}
+		return activities;
 
 	}
 }
