@@ -1,5 +1,10 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.techllenapps.agendaapp.entity.Activity"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,8 +50,7 @@
 				<div class="col-sm-10">
 					<div class="content-viewactivity">
 						<p>List of Agendas</p>
-						<br>
-						<br>
+						<br> <br>
 
 						<table>
 							<tr>
@@ -56,22 +60,36 @@
 								<th>End Date</th>
 								<th>State of the activity</th>
 							</tr>
-							<%
-								List<User> listUsers = (List) request.getAttribute("listUsers");
-								String updateURL;
-								for (int i = 0; i < listUsers.size(); i++) {
-									out.print("<tr>");
-									out.print("<td>" + listUsers.get(i).getUsers_id() + "</td>");
-									out.print("<td>" + listUsers.get(i).getUsername() + "</td>");
-									out.print("<td>" + listUsers.get(i).getEmail() + "</td>");
-									updateURL = request.getContextPath() + "/operation?page=updateUser" + "&usersId="
-											+ listUsers.get(i).getUsers_id() + "&username=" + listUsers.get(i).getUsername() + "&email="
-											+ listUsers.get(i).getEmail();
-									deleteURL = request.getContextPath() + "/operation?page=deleteUser" + "&usersId="
-											+ listUsers.get(i).getUsers_id();
-									out.print("<td><a href=" + updateURL + ">Update</a>|");
-							%>
+							<%--
+							<c:forEach items="listedactivities" var="Activity">
+								<c:param name="listedactivities" value="$listedactivities"></c:param>
+								<c:param name="tittle" value="${Activity.tittle}"></c:param>
+								<c:param name="description" value="${Activity.description}"></c:param>
+								<c:param name="startdate" value="${Activity.startdate}"></c:param>
+								<c:param name="enddate" value="${Activity.enddate}"></c:param>
+								<c:param name="status" value="${Activity.status}"></c:param>
+								<tr>
+									<td>${Activity.tittle}</td>
+									<td>${Activity.description}</td>
+									<td>${Activity.startdate}</td>
+									<td>${Activity.enddate}</td>
+									<td>${Activity.status}</td>
+								</tr>
+							</c:forEach>
+							 <%-- comment --%>
 
+					<%
+					ArrayList<Activity> jspListedActivities = (ArrayList) request.getAttribute("listedactivities");
+					for (int i = 0; i < jspListedActivities.size(); i++) {
+						out.print("<tr>");
+						out.print("<td>" + jspListedActivities.get(i).getTittle() + "</td>");
+						out.print("<td>" + jspListedActivities.get(i).getDescription()+ "</td>");
+						out.print("<td>" + jspListedActivities.get(i).getStartDate() + "</td>");
+						out.print("<td>" + jspListedActivities.get(i).getEndDate()+ "</td>");
+						out.print("<td>" + jspListedActivities.get(i).getStatus() + "</td>");
+						out.print("</tr>");
+					}
+					%>
 						</table>
 
 					</div>

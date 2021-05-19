@@ -9,14 +9,15 @@ public class Activity {
 	private Date startDate;
 	private Date endDate;
 	
-//	public Activity(String tittle, String description, String status, Date startDate, Date endDate) {
-//		this.tittle = tittle;
-//		this.description = description;
-//		this.status = status;
-//		this.startDate = startDate;
-//		this.endDate = endDate;
-//	}
-//	
+	public Activity(String tittle, String description, Date endDate, Date startDate, String status) {
+		this.tittle = tittle;
+		this.description = description;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.status = status;
+
+	}
+	
 	public Activity(String tittle, String description, Date startDate, Date endDate) {
 		this.tittle = tittle;
 		this.description = description;
@@ -24,6 +25,8 @@ public class Activity {
 		this.endDate = endDate;
 	}
 	
+	
+
 	public String getTittle() {
 		return tittle;
 	}

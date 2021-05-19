@@ -3,9 +3,6 @@ package com.techllenapps.agendaapp.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
-
-import org.studyeasy.entity.User;
-
 import com.techllenapps.agendaapp.entity.Activity;
 
 public class ActivityOperationDao {
@@ -43,7 +40,7 @@ public class ActivityOperationDao {
 					"  (tittle,description,start_date,end_date) VALUES " +
 					" (?, ?, ?,?);";
 			stmt= connection.prepareStatement(sqlq);
-
+			
 			//Bind values into the parameters
 			stmt.setString(1,enteredTittle);
 			stmt.setString(2,enteredDescription);
@@ -75,9 +72,9 @@ public class ActivityOperationDao {
 			connection = DriverManager.getConnection(DB_URL,USER,PASS);
 
 			//making a  prepared statement and executing a query
-			String sqlq= "SELECT * from activities" +
-					"  (tittle,description,start_date,end_date) VALUES " +
-					" (?, ?, ?,?);";
+			String sqlq= "SELECT * FROM activities" +
+					"  (tittle,description,start_date,end_date,status) VALUES " +
+					" (?, ?, ?,?,?);";
 			stmt= connection.prepareStatement(sqlq);
 
 			//selecting all records
@@ -86,7 +83,7 @@ public class ActivityOperationDao {
 			//extracting data from resultset and bind them to the activity object
 			//for display
 			while(rs.next()){
-				activities.add(new Activity(rs.getString("tittle"), rs.getString("description"), rs.getDate("start_date"),rs.getDate("End_date")));
+				activities.add(new Activity(rs.getString("tittle"), rs.getString("description"), rs.getDate("start_date"),rs.getDate("End_date"),rs.getString("status")));
 			}	
 
 		}catch(SQLException se){
@@ -98,6 +95,11 @@ public class ActivityOperationDao {
 		}
 		return activities;
 
+	}
+	
+	public static void main(String[] args) {
+		ActivityOperationDao act = new ActivityOperationDao();
+		act.viewActivity();
 	}
 }
 

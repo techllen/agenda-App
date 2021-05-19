@@ -3,6 +3,7 @@ package com.techllenapps.agendaapp.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -60,8 +61,7 @@ public class OperationController extends HttpServlet {
 			//if the activity is added go back to the add activity page
 			try {
 				if (aact.addActivity(act)==1) {
-					request.getRequestDispatcher("index.jsp").forward(request, response);
-				}
+					home(request, response);				}
 				else {
 					error(request,response);
 				}
@@ -88,13 +88,25 @@ public class OperationController extends HttpServlet {
 	}
 
 
-//	private void addActivity(HttpServletRequest request, HttpServletResponse response) {
-//		try {
-//			request.getRequestDispatcher("addactivity.jsp").forward(request, response);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	private void home(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.getRequestDispatcher("addactivity.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void viewActivity(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
+		listedactivities = new ActivityOperationDao().viewActivity();
+		request.setAttribute("listedactivities", listedactivities);
+		
+		try {
+			request.getRequestDispatcher("viewactivity.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	private void updateActivity(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -105,13 +117,7 @@ public class OperationController extends HttpServlet {
 	}
 		
 
-	private void viewActivity(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			request.getRequestDispatcher("viewactivity.jsp").forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 	
 
 	private void error(HttpServletRequest request, HttpServletResponse response) {
