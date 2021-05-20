@@ -3,6 +3,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.techllenapps.agendaapp.entity.Activity"%>
+<%@ page isELIgnored="false"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +52,8 @@
 					<div class="content-viewactivity">
 						<p>List of Agendas</p>
 						<br> <br>
-						<p> ${jspListedActivities} </p>
-						
+						<p>${jspListedActivities}</p>
+
 
 						<table>
 							<tr>
@@ -61,21 +63,28 @@
 								<th>End Date</th>
 								<th>State of the activity</th>
 							</tr>
-							<c:forEach var="activity" items="${jspListedActivities}" >
+														<%-- 
+							
+							<c:forEach var="activity" items="${jspListedActivities}">
 								<tr>
 									<td>${jspListedActivities.tittle}</td>
 									<td>${jspListedActivities.description}</td>
 									<td>${jspListedActivities.startdate}</td>
 									<td>${jspListedActivities.enddate}</td>
 									<td>${jspListedActivities.status}</td>
+									<td><c:out value="${activity.tittle}"></c:out></td>
+									<td><c:out value="${activity.description}"></c:out></td>
+									<td><c:out value="${activity.startdate}"></c:out></td>
+									<td><c:out value="${activity.enddate}"></c:out></td>
+									<td><c:out value="${activity.status}"></c:out></td>
+									<td><c:out value="${activity}"></c:out></td>
+									<td><c:out value="${jspListedActivities}"></c:out></td>
 								</tr>
-								<p> ${activity} </p>
-								
 							</c:forEach>
-							<%--
-
+														--%>
+							
 					<%
-					ArrayList<Activity> jspListedActivities = (ArrayList) request.getAttribute("listedactivities");
+					ArrayList<Activity> jspListedActivities = (ArrayList<Activity>) request.getAttribute("listedactivities");
 					for (int i = 0; i < jspListedActivities.size(); i++) {
 						out.print("<tr>");
 						out.print("<td>" + jspListedActivities.get(i).getTittle() + "</td>");
@@ -86,8 +95,6 @@
 						out.print("</tr>");
 					}
 					%>
-					<%-- comment --%>
-					
 						</table>
 					</div>
 				</div>

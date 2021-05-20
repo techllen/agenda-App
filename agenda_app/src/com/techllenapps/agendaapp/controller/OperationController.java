@@ -97,6 +97,7 @@ public class OperationController extends HttpServlet {
 	}
 	
 	private void viewActivity(HttpServletRequest request, HttpServletResponse response) {
+	       
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
 		listedactivities = new ActivityOperationDao().viewActivity();
 		request.setAttribute("jspListedActivities", listedactivities);
