@@ -72,9 +72,7 @@ public class ActivityOperationDao {
 			connection = DriverManager.getConnection(DB_URL,USER,PASS);
 
 			//making a  prepared statement and executing a query
-			String sqlq= "SELECT * FROM activities" +
-					"  (tittle,description,start_date,end_date,status) VALUES " +
-					" (?, ?, ?,?,?);";
+			String sqlq= "SELECT * FROM activities";
 			stmt= connection.prepareStatement(sqlq);
 
 			//selecting all records
@@ -90,16 +88,16 @@ public class ActivityOperationDao {
 			//Handle errors for JDBC
 			se.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// handles error for jdbc driver class
+			// handles error for JDBC driver class
 			e.printStackTrace();
 		}
 		return activities;
 
 	}
-	
+	//this method is for testing
 	public static void main(String[] args) {
 		ActivityOperationDao act = new ActivityOperationDao();
-		act.viewActivity();
+		System.out.println(act.viewActivity());
 	}
 }
 

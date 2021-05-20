@@ -99,7 +99,7 @@ public class OperationController extends HttpServlet {
 	private void viewActivity(HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
 		listedactivities = new ActivityOperationDao().viewActivity();
-		request.setAttribute("listedactivities", listedactivities);
+		request.setAttribute("jspListedActivities", listedactivities);
 		
 		try {
 			request.getRequestDispatcher("viewactivity.jsp").forward(request, response);
@@ -133,6 +133,12 @@ public class OperationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	//this method is for testing
+	public static void main(String[] args) {
+		ActivityOperationDao act = new ActivityOperationDao();
+		System.out.println(act.viewActivity());
 	}
 
 }

@@ -1,7 +1,6 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.techllenapps.agendaapp.entity.Activity"%>
 
@@ -51,6 +50,8 @@
 					<div class="content-viewactivity">
 						<p>List of Agendas</p>
 						<br> <br>
+						<p> ${jspListedActivities} </p>
+						
 
 						<table>
 							<tr>
@@ -60,23 +61,18 @@
 								<th>End Date</th>
 								<th>State of the activity</th>
 							</tr>
-							<%--
-							<c:forEach items="listedactivities" var="Activity">
-								<c:param name="listedactivities" value="$listedactivities"></c:param>
-								<c:param name="tittle" value="${Activity.tittle}"></c:param>
-								<c:param name="description" value="${Activity.description}"></c:param>
-								<c:param name="startdate" value="${Activity.startdate}"></c:param>
-								<c:param name="enddate" value="${Activity.enddate}"></c:param>
-								<c:param name="status" value="${Activity.status}"></c:param>
+							<c:forEach var="activity" items="${jspListedActivities}" >
 								<tr>
-									<td>${Activity.tittle}</td>
-									<td>${Activity.description}</td>
-									<td>${Activity.startdate}</td>
-									<td>${Activity.enddate}</td>
-									<td>${Activity.status}</td>
+									<td>${jspListedActivities.tittle}</td>
+									<td>${jspListedActivities.description}</td>
+									<td>${jspListedActivities.startdate}</td>
+									<td>${jspListedActivities.enddate}</td>
+									<td>${jspListedActivities.status}</td>
 								</tr>
+								<p> ${activity} </p>
+								
 							</c:forEach>
-							 <%-- comment --%>
+							<%--
 
 					<%
 					ArrayList<Activity> jspListedActivities = (ArrayList) request.getAttribute("listedactivities");
@@ -90,10 +86,10 @@
 						out.print("</tr>");
 					}
 					%>
+					<%-- comment --%>
+					
 						</table>
-
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -105,5 +101,4 @@
 		</div>
 	</div>
 </body>
-
 </html>
