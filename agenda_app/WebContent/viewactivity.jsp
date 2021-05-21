@@ -52,9 +52,6 @@
 					<div class="content-viewactivity">
 						<p>List of Agendas</p>
 						<br> <br>
-						<p>${jspListedActivities}</p>
-
-
 						<table>
 							<tr>
 								<th>Activity Name</th>
@@ -63,38 +60,15 @@
 								<th>End Date</th>
 								<th>State of the activity</th>
 							</tr>
-														<%-- 
-							
-							<c:forEach var="activity" items="${jspListedActivities}">
+							<c:forEach items="${listedactivities}" var="act">
 								<tr>
-									<td>${jspListedActivities.tittle}</td>
-									<td>${jspListedActivities.description}</td>
-									<td>${jspListedActivities.startdate}</td>
-									<td>${jspListedActivities.enddate}</td>
-									<td>${jspListedActivities.status}</td>
-									<td><c:out value="${activity.tittle}"></c:out></td>
-									<td><c:out value="${activity.description}"></c:out></td>
-									<td><c:out value="${activity.startdate}"></c:out></td>
-									<td><c:out value="${activity.enddate}"></c:out></td>
-									<td><c:out value="${activity.status}"></c:out></td>
-									<td><c:out value="${activity}"></c:out></td>
-									<td><c:out value="${jspListedActivities}"></c:out></td>
+									<td>${act.tittle}</td>
+									<td>${act.description}</td>
+									<td>${act.startDate}</td>
+									<td>${act.endDate}</td>
+									<td>${act.status}</td>
 								</tr>
 							</c:forEach>
-														--%>
-							
-					<%
-					ArrayList<Activity> jspListedActivities = (ArrayList<Activity>) request.getAttribute("listedactivities");
-					for (int i = 0; i < jspListedActivities.size(); i++) {
-						out.print("<tr>");
-						out.print("<td>" + jspListedActivities.get(i).getTittle() + "</td>");
-						out.print("<td>" + jspListedActivities.get(i).getDescription()+ "</td>");
-						out.print("<td>" + jspListedActivities.get(i).getStartDate() + "</td>");
-						out.print("<td>" + jspListedActivities.get(i).getEndDate()+ "</td>");
-						out.print("<td>" + jspListedActivities.get(i).getStatus() + "</td>");
-						out.print("</tr>");
-					}
-					%>
 						</table>
 					</div>
 				</div>
