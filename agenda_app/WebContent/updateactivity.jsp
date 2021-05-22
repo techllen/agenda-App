@@ -55,29 +55,30 @@
 						<table>
 							<thead>
 								<tr>
+									<th>Activity id</th>
 									<th>Activity Name</th>
 									<th>Activity Description</th>
 									<th>Start Date</th>
 									<th>End Date</th>
 									<th>State of the activity</th>
 									<th>Action</th>
-
+									
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="act" items="${listedactivities}">
 									<tr>
+										<td><c:out value="${act.id}" /></td>
 										<td><c:out value="${act.tittle}" /></td>
 										<td><c:out value="${act.description}" /></td>
 										<td><c:out value="${act.startDate}" /></td>
 										<td><c:out value="${act.endDate}" /></td>
 										<td><c:out value="${act.status}" /></td>
-										<td class="update-button-data">
-										<a href="./updateactivitypage.jsp">
+										<td class="button-data">
+										<a href="<%=request.getContextPath()%>/updateactivitypage">
 										<button class="update-button">Update</button></a>/
 										<a href="./updateactivitypage.jsp">
-										<button class="update-button">Update</button></a>
-
+										<button class="delete-button">Delete</button></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

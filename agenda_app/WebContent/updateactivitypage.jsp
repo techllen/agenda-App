@@ -37,9 +37,9 @@
             <div class="row">
                 <div class="menu col-sm-2">
                         <!-- page names will determine which operation is being executed by JSP -->
-                    <a href="${pageContext.request.contextPath}/operation?page=addactivity">Add Activity</a>
-                    <a href="${pageContext.request.contextPath}/operation?page=updateactivity">Update Activity</a>
-                    <a href="${pageContext.request.contextPath}/operation?page=viewactivity">View Activities</a>
+                    <a href="<%=request.getContextPath()%>/addactivity">Add Activity</a>
+                    <a href="<%=request.getContextPath()%>/updateactivity">Update Activity</a>
+                    <a href="<%=request.getContextPath()%>/viewactivity">View Activities</a>
                     <a href="${pageContext.request.contextPath}/logout">Logout</a>
                 </div>
         <!-- Contents -->

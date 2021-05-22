@@ -55,6 +55,7 @@
 						<table>
 							<thead>
 								<tr>
+									<th>Activity id</th>
 									<th>Activity Name</th>
 									<th>Activity Description</th>
 									<th>Start Date</th>
@@ -63,13 +64,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="act" items="${listedactivities}" >
+								<c:forEach var="act" items="${listedactivities}">
 									<tr>
+										<td><c:out value="${act.id}" /></td>
 										<td><c:out value="${act.tittle}" /></td>
 										<td><c:out value="${act.description}" /></td>
 										<td><c:out value="${act.startDate}" /></td>
 										<td><c:out value="${act.endDate}" /></td>
-										<td><c:out value="${act.status}" /></td>			
+										<td><c:out value="${act.status}" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>

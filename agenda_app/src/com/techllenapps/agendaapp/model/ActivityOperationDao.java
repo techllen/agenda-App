@@ -81,7 +81,7 @@ public class ActivityOperationDao {
 			//extracting data from resultset and bind them to the activity object
 			//for display
 			while(rs.next()){
-				activities.add(new Activity(rs.getString("tittle"), rs.getString("description"), rs.getDate("start_date"),rs.getDate("End_date"),rs.getString("status")));
+				activities.add(new Activity(rs.getInt("id"),rs.getString("tittle"), rs.getString("description"), rs.getDate("start_date"),rs.getDate("End_date"),rs.getString("status")));
 			}	
 
 		}catch(SQLException se){
@@ -94,6 +94,51 @@ public class ActivityOperationDao {
 		return activities;
 
 	}
+	
+	public int updateActivity(Activity act) throws ClassNotFoundException {
+		//local connection object
+		int result=0;
+		//getting parameters from object
+		String enteredTittle = act.getTittle();
+		String enteredDescription= act.getDescription();
+		Date enteredStartDate = act.getStartDate();
+		Date enteredEndDate = act.getEndDate();
+		String status = act.getStatus();
+
+		try {
+			//registering JDBC Driver
+
+			Class.forName(JDBC_DRIVER);
+
+			//opening a connection
+			connection = DriverManager.getConnection(DB_URL,USER,PASS);
+
+			//making a  prepared statement and executing a query
+			String sqlq= "INSERT INTO activities" +
+					"  (tittle,description,start_date,end_date,status) VALUES " +
+					" (?,?,?,?,?);";
+			stmt= connection.prepareStatement(sqlq);
+			
+			//Bind values into the parameters
+			stmt.setString(1,enteredTittle);
+			stmt.setString(2,enteredDescription);
+			java.sql.Date sqlStartDate = new java.sql.Date(enteredStartDate.getTime());
+			stmt.setDate(3,sqlStartDate);
+			java.sql.Date sqlEndDate = new java.sql.Date(enteredEndDate.getTime());
+			stmt.setDate(4,sqlEndDate);
+			stmt.setString(5,status);
+
+			//updating a user by running the query to update the table
+			result = stmt.executeUpdate();
+
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}
+		return result;
+
+	}
+	
 	//this method is for testing
 	public static void main(String[] args) {
 		ActivityOperationDao act = new ActivityOperationDao();

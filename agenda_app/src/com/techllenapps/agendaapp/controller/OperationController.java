@@ -31,20 +31,26 @@ public class OperationController extends HttpServlet {
 		//we are switching functions according to form names
 		String action = request.getServletPath();
 		action = action.toLowerCase();
-		
+
 		switch (action) {
 		case "/addactivity":
 			addActivity(request,response);
 			break;
-				
+
 		case "/updateactivity":
 			updateActivity(request,response);
 			break;
+
+		case "/updateactivitypage":
+			updateActivityPage(request,response);
 			
+		case "/update":
+			update(request,response);
+
 		case "/viewactivity":
 			viewActivity(request,response);
 			break;
-			
+
 		default:
 			error(request,response);
 			break;
@@ -71,10 +77,10 @@ public class OperationController extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-				
+
 		//setting parameters to the object using constructor
 		Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
-		
+
 		//validating and adding activity
 		//if the activity is added go back to the add activity page
 		try {
@@ -89,9 +95,9 @@ public class OperationController extends HttpServlet {
 		}
 
 	}
-	
+
 	private void viewActivity(HttpServletRequest request, HttpServletResponse response) {
-	       
+
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
 		listedactivities =new ActivityOperationDao().viewActivity();
 		request.setAttribute("listedactivities", listedactivities);
@@ -115,7 +121,60 @@ public class OperationController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+
+	private void updateActivityPage(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.getRequestDispatcher("updateactivitypage.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void update(HttpServletRequest request, HttpServletResponse response) {
+		//getting parameters from the form
+				String id = request.getParameter("id");
+				String tittle = request.getParameter("tittle");
+				String description = request.getParameter("description");
+				//converting dates
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+				//getting date parameters from the form
+				String startDate = request.getParameter("startdate");
+				String endDate = request.getParameter("enddate");
+				//parsing
+				Date startDatefmtd=null;
+				Date endDatefmtd=null;
+				try {
+					startDatefmtd = formatter.parse(startDate);
+					endDatefmtd= formatter.parse(endDate);
+
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				String status = request.getParameter("status");
+
+				//setting parameters to the object using constructor
+				Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd,status);
+
+				//validating and adding activity
+				//if the activity is added go back to the add activity page
+				try {
+					if (aact.updateActivity(act)==1) {
+						home(request, response);				}
+					else {
+						error(request,response);
+					}
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		
+		try {
+			request.getRequestDispatcher("updateactivitypage.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	private void error(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -124,9 +183,9 @@ public class OperationController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private void home(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -138,7 +197,7 @@ public class OperationController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
+
 	//this method is for testing
 	public static void main(String[] args) {
 		ActivityOperationDao act = new ActivityOperationDao();
