@@ -37,16 +37,16 @@
             <div class="row">
                 <div class="menu col-sm-2">
                         <!-- page names will determine which operation is being executed by JSP -->
-                    <a href="${pageContext.request.contextPath}/operation?page=addactivity">Add Activity</a>
-                    <a href="${pageContext.request.contextPath}/operation?page=updateactivity">Update Activity</a>
-                    <a href="${pageContext.request.contextPath}/operation?page=viewactivity">View Activities</a>
+                    <a href="<%=request.getContextPath()%>/addactivity">Add Activity</a>
+                    <a href="<%=request.getContextPath()%>/updateactivity">Update Activity</a>
+                    <a href="<%=request.getContextPath()%>/viewactivity">View Activities</a>
                     <a href="${pageContext.request.contextPath}/logout">Logout</a>
                 </div>
         <!-- Contents -->
                 <div class="col-sm-10">
                     <div class="content-addactivity">
                         <p>Whats on your mind for today</p>
-                        <form action="${pageContext.request.contextPath}/operation" method="get">
+                        <form action="${pageContext.request.contextPath}/addactivity" method="get">
                         	<label for="tittle">Please enter the name of the activity</label><br>
                             <input style="height: 30px;" id="tittle" name="tittle" maxlength="50" size="50"><br>
                             <label for="description">Please describe what you are planning to do</label><br>

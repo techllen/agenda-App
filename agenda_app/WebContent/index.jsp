@@ -38,9 +38,9 @@
             <div class="row">
                 <div class="menu col-sm-2">
                         <!-- opening links to JSP pages -->
-                    <a href="./addactivity.jsp">Add Activity</a>
-                    <a href="./updateactivity.jsp">Update Activity</a>
-                    <a href="./viewactivity.jsp">View Activities</a>
+                    <a href="<%=request.getContextPath()%>/addactivity">Add Activity</a>
+                    <a href="<%=request.getContextPath()%>/updateactivity">Update Activity</a>
+                    <a href="<%=request.getContextPath()%>/viewactivity">View Activities</a>
                     <a href="${pageContext.request.contextPath}/logout">Logout</a>        
                 </div>
                 <div class="col-sm-10">

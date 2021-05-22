@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="com.techllenapps.agendaapp.entity.Activity"%>
 <%@ page isELIgnored="false"%>
 
@@ -53,22 +53,26 @@
 						<p>List of Agendas</p>
 						<br> <br>
 						<table>
-							<tr>
-								<th>Activity Name</th>
-								<th>Activity Description</th>
-								<th>Start Date</th>
-								<th>End Date</th>
-								<th>State of the activity</th>
-							</tr>
-							<c:forEach items="${listedactivities}" var="act">
+							<thead>
 								<tr>
-									<td>${act.tittle}</td>
-									<td>${act.description}</td>
-									<td>${act.startDate}</td>
-									<td>${act.endDate}</td>
-									<td>${act.status}</td>
+									<th>Activity Name</th>
+									<th>Activity Description</th>
+									<th>Start Date</th>
+									<th>End Date</th>
+									<th>State of the activity</th>
 								</tr>
-							</c:forEach>
+							</thead>
+							<tbody>
+								<c:forEach var="act" items="${listedactivities}" >
+									<tr>
+										<td><c:out value="${act.tittle}" /></td>
+										<td><c:out value="${act.description}" /></td>
+										<td><c:out value="${act.startDate}" /></td>
+										<td><c:out value="${act.endDate}" /></td>
+										<td><c:out value="${act.status}" /></td>			
+									</tr>
+								</c:forEach>
+							</tbody>
 						</table>
 					</div>
 				</div>

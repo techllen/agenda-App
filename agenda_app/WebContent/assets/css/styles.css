@@ -1,165 +1,173 @@
 @charset "UTF-8";
 
 .app {
-    padding: 20px;
+	padding: 20px;
 }
 
 /*loginpage*/
-
 .login {
-    margin-top: 250px;
-    text-align: center;
-    margin-bottom: 300px;
+	margin-top: 250px;
+	text-align: center;
+	margin-bottom: 300px;
 }
 
 /*Index*/
-
 .topbar .row {
-    background-color: #0099ff;
-    font-size: 35px;
-    color: #f2f2f2;
-    height: 60px;
+	background-color: #0099ff;
+	font-size: 35px;
+	color: #f2f2f2;
+	height: 60px;
 }
 
 .topbar .appname {
-    text-align: center;
+	text-align: center;
 }
 
 .sidenav .row .menu {
-    display: flex;
-    flex-direction: column;
-    background-color: #0099ff;
+	display: flex;
+	flex-direction: column;
+	background-color: #0099ff;
 }
 
 .sidenav a {
-    text-decoration: none;
-    color: f2f2f2;
-    font-size: 25px;
-    border-bottom: 0.5px solid #f2f2f2;
+	text-decoration: none;
+	color: f2f2f2;
+	font-size: 25px;
+	border-bottom: 0.5px solid #f2f2f2;
 }
 
 .sidenav .row {
-    height: 85%;
+	height: 85%;
 }
 
 .menu a:hover {
-    color: black;
+	color: black;
 }
 
 .menu a:active {
-    color: coral;
+	color: coral;
 }
 
 .content {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 300px;
+	text-align: center;
+	font-size: 30px;
+	margin-top: 300px;
 }
 
 .footer {
-    color: f2f2f2;
-    text-align: center;
-    border-top: 5px solid #f2f2f2;
+	color: f2f2f2;
+	text-align: center;
+	border-top: 5px solid #f2f2f2;
 }
 
 .footer .row {
-    background-color: blue;
-    height: 50px;
+	background-color: blue;
+	height: 50px;
 }
 
 .made {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 /*Add ACtivity*/
-
 .content-addactivity p {
-    font-size: 30px;
-    margin-top: 30px;
+	font-size: 30px;
+	margin-top: 30px;
 }
 
 .content-addactivity label {
-    font-size: 20px;
-    margin-top: 30px;
+	font-size: 20px;
+	margin-top: 30px;
 }
 
 .content-addactivity input {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 /*Apdate ACtivity*/
-
 .content-updateactivity p {
-    font-size: 30px;
-    margin-top: 30px;
+	font-size: 30px;
+	margin-top: 30px;
 }
 
 table {
-    margin-top: -50px;
-    width: 100%;
+	margin-top: -50px;
+	width: 100%;
 }
 
 table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+	border: 1px solid black;
+	border-collapse: collapse;
 }
 
 table th {
-    text-align: center;
-    background-color: #0099ff;
+	text-align: center;
+	background-color: #0099ff;
 }
 
 table tr:nth-child(odd) {
-    background-color: #0099ff15;
+	background-color: #0099ff15;
 }
 
 table tr {
-    height: 40px;
+	height: 40px;
 }
 
-.update-button{
-    border-radius: 4px;
-    background-color: #0099ff;
-    height: 30px;
-    width: 80px;
-    font-size: 15px;
+.update-button .delete-button{
+	border-radius: 4px;
+	background-color: #0099ff;
+	height: 30px;
+	width: 80px;
+	font-size: 15px;
+}
+
+.delete-button{
+	border-radius: 4px;
+	background-color: #0099ff;
+	height: 30px;
+	width: 80px;
+	font-size: 15px;
+}
+
+.update-button-data a
+{
+text-align:center;
 }
 
 /*view activity*/
-
 .content-viewactivity p {
-    font-size: 30px;
-    margin-top: 30px;
+	font-size: 30px;
+	margin-top: 30px;
 }
 
 table {
-    margin-top: -50px;
-    width: 100%;
+	margin-top: -50px;
+	width: 100%;
 }
 
 table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+	border: 1px solid black;
+	border-collapse: collapse;
 }
 
 table th {
-    text-align: center;
-    background-color: #0099ff;
+	text-align: center;
+	background-color: #0099ff;
 }
 
 table tr:nth-child(odd) {
-    background-color: #0099ff15;
+	background-color: #0099ff15;
 }
 
 table tr {
-    height: 40px;
+	height: 40px;
 }
 
 /*Login errot*/
-button .try-again-button{
+button .try-again-button {
 	border-radius: 4px;
-    background-color: #0099ff;
-    height: 30px;
-    width: 80px;
-    font-size: 15px;
+	background-color: #0099ff;
+	height: 30px;
+	width: 80px;
+	font-size: 15px;
 }
