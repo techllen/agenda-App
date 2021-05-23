@@ -17,7 +17,7 @@
 	crossorigin="anonymous">
 
 <!-- ProjectOwn Exteranal CSS -->
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="./assets/css/styles.css">
 
 <title>AgendaApp</title>
 </head>

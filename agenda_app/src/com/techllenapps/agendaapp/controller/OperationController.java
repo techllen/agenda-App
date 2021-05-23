@@ -43,7 +43,7 @@ public class OperationController extends HttpServlet {
 
 		case "/updateactivitypage":
 			updateActivityPage(request,response);
-			
+
 		case "/update":
 			update(request,response);
 
@@ -51,12 +51,14 @@ public class OperationController extends HttpServlet {
 			viewActivity(request,response);
 			break;
 
+		case "/delete":
+			delete(request,response);
+
 		default:
 			error(request,response);
 			break;
 		}
 	}
-
 
 	private void addActivity(HttpServletRequest request, HttpServletResponse response) {
 		//getting parameters from the form
@@ -127,7 +129,7 @@ public class OperationController extends HttpServlet {
 		Activity activityToDisplay= new Activity();
 		activityToDisplay = new ActivityOperationDao().selectActivityToDisplay(id);	
 		request.setAttribute("activityToDisplay", activityToDisplay);
-		
+
 		try {
 			request.getRequestDispatcher("updateactivitypage.jsp").forward(request, response);
 		} catch (Exception e) {
@@ -138,43 +140,59 @@ public class OperationController extends HttpServlet {
 
 	private void update(HttpServletRequest request, HttpServletResponse response) {
 		//getting parameters from the form
-				int id = Integer.parseInt(request.getParameter("id"));
-				String tittle = request.getParameter("tittle");
-				String description = request.getParameter("description");
-				//converting dates
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-				//getting date parameters from the form
-				String startDate = request.getParameter("startdate");
-				String endDate = request.getParameter("enddate");
-				//parsing
-				Date startDatefmtd=null;
-				Date endDatefmtd=null;
-				try {
-					startDatefmtd = formatter.parse(startDate);
-					endDatefmtd= formatter.parse(endDate);
+		int id = Integer.parseInt(request.getParameter("id"));
+		String tittle = request.getParameter("tittle");
+		String description = request.getParameter("description");
+		//converting dates
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+		//getting date parameters from the form
+		String startDate = request.getParameter("startdate");
+		String endDate = request.getParameter("enddate");
+		//parsing
+		Date startDatefmtd=null;
+		Date endDatefmtd=null;
+		try {
+			startDatefmtd = formatter.parse(startDate);
+			endDatefmtd= formatter.parse(endDate);
 
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				String status = request.getParameter("status");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String status = request.getParameter("status");
 
-				//setting parameters to the object using constructor
-				Activity updatedActivity = new Activity(id,tittle, description, startDatefmtd, endDatefmtd,status);
+		//setting parameters to the object using constructor
+		Activity updatedActivity = new Activity(id,tittle, description, startDatefmtd, endDatefmtd,status);
 
-				//validating and adding activity
-				//if the activity is added go back to the add activity page
-				try {
-					if (aact.updateActivity(updatedActivity)==1) {
-						home(request, response);				}
-					else {
-						error(request,response);
-					}
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		//validating and adding activity
+		//if the activity is added go back to the add activity page
+		try {
+			if (aact.updateActivity(updatedActivity)==1) {
+				home(request, response);				}
+			else {
+				error(request,response);
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
+
+	private void delete(HttpServletRequest request, HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			int deletedRows = new ActivityOperationDao().deleteActivity(id);
+
+			if (deletedRows==1) {
+				home(request, response);
+			}else {
+				error(request, response);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+
+	}
 	private void error(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.getRequestDispatcher("error.jsp").forward(request, response);

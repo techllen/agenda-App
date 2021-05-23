@@ -129,7 +129,7 @@ public class ActivityOperationDao {
 			stmt.setString(5,status);
 			stmt.setInt(6,id);
 
-			//updating a user by running the query to update the table
+			//updating a user by running the query to update the table returns the number of rows updated/affected
 			result = stmt.executeUpdate();
 
 		}catch(SQLException se){
@@ -176,6 +176,40 @@ public class ActivityOperationDao {
 			e.printStackTrace();
 		}
 		return selectedActivity;
+
+	}
+	
+	public int deleteActivity(int id) throws ClassNotFoundException {
+		//local connection object
+		int result=0;
+		//getting parameters from object
+		int idToDelete = id;
+	
+
+		try {
+			//registering JDBC Driver
+
+			Class.forName(JDBC_DRIVER);
+
+			//opening a connection
+			connection = DriverManager.getConnection(DB_URL,USER,PASS);
+
+			//making a  prepared statement and executing a query
+			//selecting a specific activity to delete basing on the id
+			String sqlq= "DELETE FROM activities WHERE id=?;";
+			stmt= connection.prepareStatement(sqlq);
+			
+			//Bind values into the parameters
+			stmt.setInt(1,idToDelete);
+
+			//updating a user by running the query to update the table returns the number of rows affected
+			result = stmt.executeUpdate();
+
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}
+		return result;
 
 	}
 	
