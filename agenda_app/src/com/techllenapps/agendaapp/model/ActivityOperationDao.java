@@ -99,6 +99,7 @@ public class ActivityOperationDao {
 		//local connection object
 		int result=0;
 		//getting parameters from object
+		int id = act.getId();
 		String enteredTittle = act.getTittle();
 		String enteredDescription= act.getDescription();
 		Date enteredStartDate = act.getStartDate();
@@ -114,9 +115,8 @@ public class ActivityOperationDao {
 			connection = DriverManager.getConnection(DB_URL,USER,PASS);
 
 			//making a  prepared statement and executing a query
-			String sqlq= "INSERT INTO activities" +
-					"  (tittle,description,start_date,end_date,status) VALUES " +
-					" (?,?,?,?,?);";
+			//selecting a specific activity basing on the id
+			String sqlq= "UPDATE activities set tittle=?,description=?,start_date=?,end_date =?,status=? WHERE id=?;";
 			stmt= connection.prepareStatement(sqlq);
 			
 			//Bind values into the parameters
@@ -127,6 +127,7 @@ public class ActivityOperationDao {
 			java.sql.Date sqlEndDate = new java.sql.Date(enteredEndDate.getTime());
 			stmt.setDate(4,sqlEndDate);
 			stmt.setString(5,status);
+			stmt.setInt(6,id);
 
 			//updating a user by running the query to update the table
 			result = stmt.executeUpdate();
@@ -136,6 +137,45 @@ public class ActivityOperationDao {
 			se.printStackTrace();
 		}
 		return result;
+
+	}
+	
+	public Activity selectActivityToDisplay(int id){
+		//Local connection object
+		int selectedID = id;
+		ResultSet rs = null;
+		Activity selectedActivity = new Activity();
+		try {
+			//registering JDBC Driver
+			Class.forName(JDBC_DRIVER);
+
+			//opening a connection
+			connection = DriverManager.getConnection(DB_URL,USER,PASS);
+
+			//making a  prepared statement and executing a query
+			String sqlq= "SELECT * FROM activities WHERE id=?;";
+			stmt= connection.prepareStatement(sqlq);
+			
+			//Bind values into the parameters
+			stmt.setInt(1,selectedID);
+
+			//selecting all records
+			rs = stmt.executeQuery();
+			
+			//extracting data from resultset and bind them to the activity object
+			//for display
+			while(rs.next()){
+			 selectedActivity = new Activity(rs.getInt("id"),rs.getString("tittle"), rs.getString("description"), rs.getDate("start_date"),rs.getDate("End_date"),rs.getString("status"));
+			}	
+
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// handles error for JDBC driver class
+			e.printStackTrace();
+		}
+		return selectedActivity;
 
 	}
 	

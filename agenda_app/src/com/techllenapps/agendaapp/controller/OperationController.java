@@ -123,16 +123,22 @@ public class OperationController extends HttpServlet {
 	}
 
 	private void updateActivityPage(HttpServletRequest request, HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		Activity activityToDisplay= new Activity();
+		activityToDisplay = new ActivityOperationDao().selectActivityToDisplay(id);	
+		request.setAttribute("activityToDisplay", activityToDisplay);
+		
 		try {
 			request.getRequestDispatcher("updateactivitypage.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
-	
+
 	private void update(HttpServletRequest request, HttpServletResponse response) {
 		//getting parameters from the form
-				String id = request.getParameter("id");
+				int id = Integer.parseInt(request.getParameter("id"));
 				String tittle = request.getParameter("tittle");
 				String description = request.getParameter("description");
 				//converting dates
@@ -153,12 +159,12 @@ public class OperationController extends HttpServlet {
 				String status = request.getParameter("status");
 
 				//setting parameters to the object using constructor
-				Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd,status);
+				Activity updatedActivity = new Activity(id,tittle, description, startDatefmtd, endDatefmtd,status);
 
 				//validating and adding activity
 				//if the activity is added go back to the add activity page
 				try {
-					if (aact.updateActivity(act)==1) {
+					if (aact.updateActivity(updatedActivity)==1) {
 						home(request, response);				}
 					else {
 						error(request,response);
@@ -167,15 +173,8 @@ public class OperationController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		
-		try {
-			request.getRequestDispatcher("updateactivitypage.jsp").forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
-
-
+	
 	private void error(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.getRequestDispatcher("error.jsp").forward(request, response);

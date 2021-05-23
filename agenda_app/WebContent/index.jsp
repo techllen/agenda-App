@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.agendaApp.model.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +48,6 @@
                         <p>What can we do for you?</p>
                         <p>Anything in your mind for today!!!?</p>
                     </div>
-
                 </div>
             </div>
         </div>

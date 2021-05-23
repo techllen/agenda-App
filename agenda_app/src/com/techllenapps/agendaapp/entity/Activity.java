@@ -37,6 +37,10 @@ public class Activity {
 	}
 
 
+	public Activity() {
+	}
+
+
 	public int getId() {
 		return id;
 	}

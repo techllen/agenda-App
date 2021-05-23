@@ -42,16 +42,15 @@
 			<div class="row">
 				<div class="menu col-sm-2">
 					<!-- page names will determine which operation is being executed by JSP -->
-					<a href="<%=request.getContextPath()%>/addactivity">Add Activity</a>
-                    <a href="<%=request.getContextPath()%>/updateactivity">Update Activity</a>
-                    <a href="<%=request.getContextPath()%>/viewactivity">View Activities</a>
-                    <a href="${pageContext.request.contextPath}/logout">Logout</a>
+					<a href="<%=request.getContextPath()%>/addactivity">Add
+						Activity</a> <a href="<%=request.getContextPath()%>/updateactivity">Update
+						Activity</a> <a href="<%=request.getContextPath()%>/viewactivity">View
+						Activities</a> <a href="${pageContext.request.contextPath}/logout">Logout</a>
 				</div>
 				<div class="col-sm-10">
 					<div class="content-updateactivity">
 						<p>Activities to update</p>
-						<br>
-						<br>
+						<br> <br>
 						<table>
 							<thead>
 								<tr>
@@ -62,7 +61,7 @@
 									<th>End Date</th>
 									<th>State of the activity</th>
 									<th>Action</th>
-									
+
 								</tr>
 							</thead>
 							<tbody>
@@ -75,10 +74,22 @@
 										<td><c:out value="${act.endDate}" /></td>
 										<td><c:out value="${act.status}" /></td>
 										<td class="button-data">
-										<a href="<%=request.getContextPath()%>/updateactivitypage">
-										<button class="update-button">Update</button></a>/
-										<a href="./updateactivitypage.jsp">
-										<button class="delete-button">Delete</button></a></td>
+											<!--Getting an ID for a specific activity to allow selection for Update and deletion
+											by passing data to from this jsp another JSP
+										<a
+											href="updateactivitypage.jsp?id=<c:out value="${act.id}"/>">
+												<button class="update-button" class="btn btn-success">Update</button>
+										</a>/ -->
+										<!--Getting an ID for a specific activity to allow selection for Update and deletion
+											by passing data from this jsp to a servlet-->
+											<a
+											href="updateactivitypage?id=<c:out value="${act.id}"/>">
+												<button class="update-button" class="btn btn-success">Update</button>
+										</a>/ 
+										<a
+											href="<%=request.getContextPath()%>/delete?id=<c:out value="${act.id}"/>">
+												<button class="delete-button" class="btn btn-warning">Delete</button>
+										</a>
 									</tr>
 								</c:forEach>
 							</tbody>
