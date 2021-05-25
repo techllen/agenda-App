@@ -46,11 +46,11 @@
                 <div class="col-sm-10">
                     <div class="content-addactivity">
                         <p>Whats on your mind for today</p>
-                        <form action="${pageContext.request.contextPath}/addactivity" method="get">
+                        <form action="${pageContext.request.contextPath}/addactivityform" method="get">
                         	<label for="tittle">Please enter the name of the activity</label><br>
-                            <input style="height: 30px;" id="tittle" name="tittle" maxlength="50" size="50"><br>
+                            <input style="height: 30px;" id="tittle" name="tittle" maxlength="50" size="50" required><br>
                             <label for="description">Please describe what you are planning to do</label><br>
-                            <input style="height: 100px;" id="description" name="description" maxlength="250" size="70"><br>
+                            <textarea id="description" name="description" cols="70" required></textarea><br>
                             <label for="startdate">Please enter start date and time</label><br>
                             <input type="date" id="startdate" name="startdate" required><br>
                             <label for="enddate">Please enter end date and time</label><br>

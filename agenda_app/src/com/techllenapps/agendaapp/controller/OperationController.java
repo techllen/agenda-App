@@ -36,6 +36,10 @@ public class OperationController extends HttpServlet {
 		case "/addactivity":
 			addActivity(request,response);
 			break;
+		
+		case "/addactivityform":
+			addActivityForm(request,response);
+			break;
 
 		case "/updateactivity":
 			updateActivity(request,response);
@@ -61,6 +65,14 @@ public class OperationController extends HttpServlet {
 	}
 
 	private void addActivity(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.getRequestDispatcher("addactivity.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void addActivityForm(HttpServletRequest request, HttpServletResponse response) {
 		//getting parameters from the form
 		String tittle = request.getParameter("tittle");
 		String description = request.getParameter("description");

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +15,12 @@
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <!-- Custom CSS for this template -->
-    <link type="text/css" rel="stylesheet" rel="./assets/css/styles.css">
+    <!--<link type="text/css" rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="styles.css" type="text/css"> 
+    
+     <!--<link rel="stylesheet" href="<c:url value ="assets/css/styles.css"/>" />-->
     <title>AgendaApp</title>
 </head>
-
 <body>
     <!-- intro bar -->
     <div class="app">
