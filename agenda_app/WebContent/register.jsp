@@ -23,6 +23,16 @@
 </head>
 
 <body>
+<%
+	//Instructing the browser not to save/cache this page to block a logged out user from viewing it again
+	//restrict the access to the previous pages after log out
+	//when the user user HTTP 1.1
+	response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+	//for the previous version of http HTTP 1.0
+	response.setHeader("Pragma","no-cache");
+	//Proxies,set the page to expire in 0s time
+	response.setHeader("Expires","0");
+	%>
 	<!-- intro bar -->
 	<div class="app">
 		<div class="topbar">
@@ -44,11 +54,14 @@
 				<br> <label for="username">Username</label><br>
 				<br> <input type="text" id="username" name="username" required><br>
 				<br> <label for="password">Password</label><br>
-				<br> <input type="text" id="password" name="password" required><br>
-				<br> <br>
-				<input type="hidden" name="form" value="register"><br>
-				<br>
+				<br> <input type="password" id="password" name="password" required><br><br> <br>
+				<br> <label for="password">Please Re-enter the Password</label><br>
+				<br> <input type="password" id="password" name="password" required><br><br> <br>
+				<input type="hidden" name="form" value="register"><br><br>
 				<button type="submit">Register</button>
+				<br><br>
+				<p>If you are already a user you may <a href="./login.jsp">Login</a>  </p>
+				
 			</form>
 		</div>
 		<!--footer-->

@@ -21,6 +21,22 @@
 </head>
 
 <body>
+<%
+	//Instructing the browser not to save/cache this page to block a logged out user from viewing it again
+	//restrict the access to the previous pages after log out
+	//when the user user HTTP 1.1
+	response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+	//for the previous version of http HTTP 1.0
+	response.setHeader("Pragma","no-cache");
+	//Proxies,set the page to expire in 0s time
+	response.setHeader("Expires","0");
+			
+	//restricting the user from accessing the app when in another browser(session is browser dependent)
+	//or when trying to view the page withoud loging in
+	if(session.getAttribute("user")==null){
+		response.sendRedirect("./login.jsp");
+	}
+	%>
     <!-- intro bar -->
     <div class="app">
         <div class="topbar">
