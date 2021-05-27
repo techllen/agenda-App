@@ -32,6 +32,7 @@
 	response.setHeader("Pragma","no-cache");
 	//Proxies,set the page to expire in 0s time
 	response.setHeader("Expires","0");
+
 	%>
 	<!-- intro bar -->
 	<div class="app">

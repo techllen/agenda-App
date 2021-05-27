@@ -34,7 +34,7 @@ public class LoginController extends HttpServlet {
 			//linking parameters to the class user
 			user.setUsername(username);
 			user.setPassword(password);
-			//calling the dao method to validate the user the user 
+			//calling the dao method to validate the user the
 			//the method logindao returns false when only unique row for the user is present
 			//using the .next method
 			if (logindao.validatelogin(user)==false) {

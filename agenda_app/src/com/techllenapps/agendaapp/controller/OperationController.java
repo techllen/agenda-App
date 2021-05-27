@@ -38,9 +38,9 @@ public class OperationController extends HttpServlet {
 			addActivity(request,response);
 			break;
 
-		case "/addactivityform":
-			addActivityForm(request,response);
-			break;
+//		case "/addactivityform":
+//			addActivityForm(request,response);
+//			break;
 
 		case "/updateactivity":
 			updateActivity(request,response);
@@ -61,6 +61,7 @@ public class OperationController extends HttpServlet {
 
 		case "/validatedate":
 			//getting parameters from the form
+			String usernameAdd =request.getParameter("user.username");
 			String tittle = request.getParameter("tittle");
 			String description = request.getParameter("description");
 			//converting dates
@@ -81,7 +82,7 @@ public class OperationController extends HttpServlet {
 					//validating and adding activity
 					//if the activity is added go back to the add activity page
 					try {
-						if (aact.addActivity(act)==1) {
+						if (aact.addActivity(act,usernameAdd)==1) {
 							home(request, response);				}
 						else {
 							error(request,response);
@@ -113,43 +114,43 @@ public class OperationController extends HttpServlet {
 		}
 	}
 
-	private void addActivityForm(HttpServletRequest request, HttpServletResponse response) {
-		//getting parameters from the form
-		String tittle = request.getParameter("tittle");
-		String description = request.getParameter("description");
-		//converting dates
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-		//getting date parameters from the form
-		String startDate = request.getParameter("startdate");
-		String endDate = request.getParameter("enddate");
-		//parsing
-		Date startDatefmtd=null;
-		Date endDatefmtd=null;
-		try {
-			startDatefmtd = formatter.parse(startDate);
-			endDatefmtd= formatter.parse(endDate);
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		//setting parameters to the object using constructor
-		Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
-
-		//validating and adding activity
-		//if the activity is added go back to the add activity page
-		try {
-			if (aact.addActivity(act)==1) {
-				home(request, response);				}
-			else {
-				error(request,response);
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+//	private void addActivityForm(HttpServletRequest request, HttpServletResponse response) {
+//		//getting parameters from the form
+//		String tittle = request.getParameter("tittle");
+//		String description = request.getParameter("description");
+//		//converting dates
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+//		//getting date parameters from the form
+//		String startDate = request.getParameter("startdate");
+//		String endDate = request.getParameter("enddate");
+//		//parsing
+//		Date startDatefmtd=null;
+//		Date endDatefmtd=null;
+//		try {
+//			startDatefmtd = formatter.parse(startDate);
+//			endDatefmtd= formatter.parse(endDate);
+//
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//
+//		//setting parameters to the object using constructor
+//		Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
+//
+//		//validating and adding activity
+//		//if the activity is added go back to the add activity page
+//		try {
+//			if (aact.addActivity(act)==1) {
+//				home(request, response);				}
+//			else {
+//				error(request,response);
+//			}
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 	private void viewActivity(HttpServletRequest request, HttpServletResponse response) {
 

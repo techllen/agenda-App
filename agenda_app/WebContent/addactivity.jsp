@@ -72,6 +72,7 @@
                             <label for="enddate">Please enter end date and time</label><br>
                             <input type="date" id="enddate" name="enddate" required><br><br><br>
                         	<input type="hidden" name="form" value="addactivity"/><br>
+                        	<input type="hidden" name="username" value="${user.username}"/><br>
                             <button type="submit">Add</button>
                         </form>
                     </div>

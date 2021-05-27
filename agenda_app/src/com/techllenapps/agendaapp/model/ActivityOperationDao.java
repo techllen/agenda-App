@@ -18,10 +18,11 @@ public class ActivityOperationDao {
 	Connection connection = null;
 	PreparedStatement stmt=null;
 
-	public int addActivity(Activity act) throws ClassNotFoundException {
+	public int addActivity(Activity act,String userName) throws ClassNotFoundException {
 		//local connection object
 		int result=0;
 		//getting parameters from object
+		String retrievedUsername = userName;
 		String enteredTittle = act.getTittle();
 		String enteredDescription= act.getDescription();
 		Date enteredStartDate = act.getStartDate();
@@ -37,8 +38,8 @@ public class ActivityOperationDao {
 
 			//making a  prepared statement and executing a query
 			String sqlq= "INSERT INTO activities" +
-					"  (tittle,description,start_date,end_date) VALUES " +
-					" (?, ?, ?,?);";
+					"  (tittle,description,start_date,end_date,username) VALUES " +
+					" (?, ?, ?,?,?);";
 			stmt= connection.prepareStatement(sqlq);
 			
 			//Bind values into the parameters
@@ -48,6 +49,7 @@ public class ActivityOperationDao {
 			stmt.setDate(3,sqlStartDate);
 			java.sql.Date sqlEndDate = new java.sql.Date(enteredEndDate.getTime());
 			stmt.setDate(4,sqlEndDate);
+			stmt.setString(5,retrievedUsername);
 
 			//adding a user by running the query to update the table
 			result = stmt.executeUpdate();
