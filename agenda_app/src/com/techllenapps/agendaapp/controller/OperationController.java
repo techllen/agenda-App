@@ -61,10 +61,11 @@ public class OperationController extends HttpServlet {
 
 		case "/validatedate":
 			//getting parameters from the form
-			String usernameAdd =request.getParameter("user.username");
+			//username parameter is used so that we can know which activity  is related to which user
+			String usernameToActivity =request.getParameter("username");
 			String tittle = request.getParameter("tittle");
 			String description = request.getParameter("description");
-			//converting dates
+			//converting dates using simple date format
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
 			//getting date parameters from the form
 			String startDate = request.getParameter("startdate");
@@ -75,14 +76,22 @@ public class OperationController extends HttpServlet {
 			try {
 				startDatefmtd = formatter.parse(startDate);
 				endDatefmtd= formatter.parse(endDate);
-				if(endDatefmtd.compareTo(startDatefmtd)>0) {
+				//Today's date
+				Date date = new Date();
+				formatter.format(date);
+				//end date is greater than or equal to start date 
+				//start date is greater than or equal to today
+				if((endDatefmtd.compareTo(startDatefmtd)>0)) {
+//						||(endDatefmtd.compareTo(startDatefmtd)==0))
+//						&&
+//						((startDatefmtd.compareTo(today)==0)||(startDatefmtd.compareTo(today)>0))) {
 					//setting parameters to the object using constructor
 					Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
 
 					//validating and adding activity
 					//if the activity is added go back to the add activity page
 					try {
-						if (aact.addActivity(act,usernameAdd)==1) {
+						if (aact.addActivity(act,usernameToActivity)==1) {
 							home(request, response);				}
 						else {
 							error(request,response);
@@ -92,10 +101,7 @@ public class OperationController extends HttpServlet {
 						e.printStackTrace();
 					}
 				}else {
-					PrintWriter out = response.getWriter();
-					out.println("<p>End date is greater than start date</p>");
-					
-
+					error(request,response);
 				}
 			}catch (ParseException e) {
 				e.printStackTrace();

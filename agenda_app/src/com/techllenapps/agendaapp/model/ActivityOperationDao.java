@@ -37,7 +37,8 @@ public class ActivityOperationDao {
 			connection = DriverManager.getConnection(DB_URL,USER,PASS);
 
 			//making a  prepared statement and executing a query
-			String sqlq= "INSERT INTO activities" +
+			//IGNORE keyword allows mySQL to discard duplicate and not to throw error
+			String sqlq= "INSERT IGNORE INTO activities" +
 					"  (tittle,description,start_date,end_date,username) VALUES " +
 					" (?, ?, ?,?,?);";
 			stmt= connection.prepareStatement(sqlq);
