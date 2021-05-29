@@ -59,10 +59,10 @@
 			<div class="row">
 				<div class="menu col-sm-2">
 					<!-- page names will determine which operation is being executed by JSP -->
-					<a href="./addactivity.jsp">Add Activity</a> <a
-						href="./updateactivity.jsp">Update Activity</a> <a
-						href="./viewactivity.jsp">View Activities</a> <a
-						href="${pageContext.request.contextPath}/logout">Logout</a>
+					<a href="./addactivity.jsp">Add Activity</a> 
+					<a href="./updateactivity.jsp">Update Activity</a> 
+					<a href="./viewactivity.jsp">View Activities</a> 
+					<a href="${pageContext.request.contextPath}/logout">Logout</a>
 				</div>
 				<div class="col-sm-10">
 					<div class="content-viewactivity">
@@ -71,7 +71,6 @@
 						<table>
 							<thead>
 								<tr>
-									<th>Activity id</th>
 									<th>Activity Name</th>
 									<th>Activity Description</th>
 									<th>Start Date</th>
@@ -82,7 +81,6 @@
 							<tbody>
 								<c:forEach var="act" items="${listedactivities}">
 									<tr>
-										<td><c:out value="${act.id}" /></td>
 										<td><c:out value="${act.tittle}" /></td>
 										<td><c:out value="${act.description}" /></td>
 										<td><c:out value="${act.startDate}" /></td>

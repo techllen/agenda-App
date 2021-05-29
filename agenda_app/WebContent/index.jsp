@@ -54,14 +54,15 @@
             <div class="row">
                 <div class="menu col-sm-2">
                         <!-- opening links to JSP pages -->
+                    <a href="<%=request.getContextPath()%>/home">Agenda App</a>
                     <a href="<%=request.getContextPath()%>/addactivity">Add Activity</a>
-                    <a href="<%=request.getContextPath()%>/updateactivity">Update Activity</a>
-                    <a href="<%=request.getContextPath()%>/viewactivity">View Activities</a>
+                    <a href="<%=request.getContextPath()%>/updateactivity?username=<c:out value="${user.username}"/>">Update Activity</a>
+                    <a href="<%=request.getContextPath()%>/viewactivity?username=<c:out value="${user.username}"/>"> View Activities</a>
                     <a href="${pageContext.request.contextPath}/logout">Logout</a>        
                 </div>
                 <div class="col-sm-10">
                     <div class="content">
-                        <p>Welcome to myAgenda App</p>
+                        <p>Welcome ${user.username} to myAgenda App</p>
                         <p>What can we do for you?</p>
                         <p>Anything in your mind for today!!!?</p>
                     </div>

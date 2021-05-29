@@ -26,6 +26,7 @@ import com.techllenapps.agendaapp.model.ActivityOperationDao;
 public class OperationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ActivityOperationDao aact = new ActivityOperationDao();
+	public String username;
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +35,10 @@ public class OperationController extends HttpServlet {
 		action = action.toLowerCase();
 
 		switch (action) {
+		case "/home":
+			home(request,response);
+			break;
+			
 		case "/addactivity":
 			addActivity(request,response);
 			break;
@@ -101,7 +106,8 @@ public class OperationController extends HttpServlet {
 						e.printStackTrace();
 					}
 				}else {
-					error(request,response);
+					String endDateError = "something is wrong with the end date";
+					request.setAttribute("endDateError", endDateError);
 				}
 			}catch (ParseException e) {
 				e.printStackTrace();
@@ -155,27 +161,31 @@ public class OperationController extends HttpServlet {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-//
 //	}
 
-	private void viewActivity(HttpServletRequest request, HttpServletResponse response) {
+	private String viewActivity(HttpServletRequest request, HttpServletResponse response) {
 
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
-		listedactivities =new ActivityOperationDao().viewActivity();
+		//getting username parameter to select activities of a specific user
+		String username = (String)request.getParameter("username");
+		listedactivities =new ActivityOperationDao().viewActivity(username);
 		request.setAttribute("listedactivities", listedactivities);
-
+		System.out.println(username);
 		try {
 			request.getRequestDispatcher("viewactivity.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return username;
 	}
 
 	private void updateActivity(HttpServletRequest request, HttpServletResponse response) {
 		//extracting data from database and display on update activity page using method viewActivity 
 		//in activity operation dao
+		//getting username parameter to select activities of a specific user
+		String username = (String)request.getParameter("username");
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
-		listedactivities =new ActivityOperationDao().viewActivity();
+		listedactivities =new ActivityOperationDao().viewActivity(username);
 		request.setAttribute("listedactivities", listedactivities);
 		try {
 			request.getRequestDispatcher("updateactivity.jsp").forward(request, response);
@@ -232,7 +242,6 @@ public class OperationController extends HttpServlet {
 				error(request,response);
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -257,7 +266,6 @@ public class OperationController extends HttpServlet {
 		try {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -271,14 +279,13 @@ public class OperationController extends HttpServlet {
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
 	//this method is for testing
-	public static void main(String[] args) {
-		ActivityOperationDao act = new ActivityOperationDao();
-		System.out.println(act.viewActivity());
+	public static void main(String[] args){
+		//ActivityOperationDao act = new ActivityOperationDao();
+		//System.out.println(act.viewActivity());
 	}
 
 }

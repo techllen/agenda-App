@@ -27,6 +27,7 @@ public class ActivityOperationDao {
 		String enteredDescription= act.getDescription();
 		Date enteredStartDate = act.getStartDate();
 		Date enteredEndDate = act.getEndDate();
+		String defaultStatus = "beginning";
 
 		try {
 			//registering JDBC Driver
@@ -38,9 +39,10 @@ public class ActivityOperationDao {
 
 			//making a  prepared statement and executing a query
 			//IGNORE keyword allows mySQL to discard duplicate and not to throw error
+			//initially status of the activity will be set to beginning ad default
 			String sqlq= "INSERT IGNORE INTO activities" +
-					"  (tittle,description,start_date,end_date,username) VALUES " +
-					" (?, ?, ?,?,?);";
+					"  (tittle,description,start_date,end_date,status,username) VALUES " +
+					" (?, ?, ?,?,?,?);";
 			stmt= connection.prepareStatement(sqlq);
 			
 			//Bind values into the parameters
@@ -50,7 +52,9 @@ public class ActivityOperationDao {
 			stmt.setDate(3,sqlStartDate);
 			java.sql.Date sqlEndDate = new java.sql.Date(enteredEndDate.getTime());
 			stmt.setDate(4,sqlEndDate);
-			stmt.setString(5,retrievedUsername);
+			//default status set,user will update status as days Go
+			stmt.setString(5,defaultStatus);
+			stmt.setString(6,retrievedUsername);
 
 			//adding a user by running the query to update the table
 			result = stmt.executeUpdate();
@@ -62,10 +66,12 @@ public class ActivityOperationDao {
 		return result;
 
 	}
-
-	public ArrayList<Activity> viewActivity(){
+    //activities will be selected basing on a specific user on the session
+	//by passing usrname to this method for selection
+	public ArrayList<Activity> viewActivity(String userName){
 		//Local connection object
 		ArrayList<Activity> activities = new ArrayList<Activity>();
+		String specificUserName = userName;
 		ResultSet rs = null;
 		try {
 			//registering JDBC Driver
@@ -75,8 +81,9 @@ public class ActivityOperationDao {
 			connection = DriverManager.getConnection(DB_URL,USER,PASS);
 
 			//making a  prepared statement and executing a query
-			String sqlq= "SELECT * FROM activities";
+			String sqlq= "SELECT * FROM activities WHERE username = ?";
 			stmt= connection.prepareStatement(sqlq);
+			stmt.setString(1, specificUserName);
 
 			//selecting all records
 			rs = stmt.executeQuery();
@@ -218,8 +225,7 @@ public class ActivityOperationDao {
 	
 	//this method is for testing
 	public static void main(String[] args) {
-		ActivityOperationDao act = new ActivityOperationDao();
-		System.out.println(act.viewActivity());
+		//ActivityOperationDao act = new ActivityOperationDao();
 	}
 }
 
