@@ -16,12 +16,11 @@
 	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
 	crossorigin="anonymous">
 
-<!-- ProjectOwn Exteranal CSS -->
-<link rel="stylesheet" href="./assets/css/styles.css">
+<!-- Custom CSS template -->
+<link rel="stylesheet" href="styles.css">
 
 <title>AgendaApp</title>
 </head>
-
 <body>
 	<!-- intro bar -->
 	<div class="app">
