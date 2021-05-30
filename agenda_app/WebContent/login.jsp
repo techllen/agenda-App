@@ -4,6 +4,7 @@
 <html lang="en">
 
 <head>
+
 <!-- Required meta tags -->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,14 +17,49 @@
 	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
 	crossorigin="anonymous">
 
-<!-- Custom CSS template -->
-<link rel="stylesheet" href="styles.css">
+<!-- Custom External CSS template -->
+<!--<link rel="stylesheet" href="styles.css">-->
 
+<!-- Internal Custom CSS -->
+<style type="text/css">
+.app {
+	padding: 20px;
+}
+
+.login {
+	margin-top: 150px;
+	text-align: center;
+	margin-bottom: 300px;
+}
+
+.topbar .row {
+	background-color: #0099ff;
+	font-size: 35px;
+	color: #f2f2f2;
+	height: 60px;
+}
+
+.footer {
+	color: f2f2f2;
+	text-align: center;
+	border-top: 5px solid #f2f2f2;
+}
+
+.footer .row {
+	background-color: blue;
+	height: 50px;
+}
+
+.made {
+	margin-top: 10px;
+}
+
+</style>
 <title>AgendaApp</title>
 </head>
 <body>
 	<!-- intro bar -->
-	<div class="app">
+	<div class="app container">
 		<div class="topbar">
 			<div class="row">
 				<div class="appname col-sm-12">AGENDA</div>
