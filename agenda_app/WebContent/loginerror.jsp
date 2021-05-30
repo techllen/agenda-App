@@ -20,60 +20,21 @@
     <!--<link rel="stylesheet" href="styles.css">-->
     <!-- Internal Custom CSS -->
 <style type="text/css">
-@charset "UTF-8";
-
 .app {
 	padding: 20px;
 }
 
-/*loginpage*/
 .login {
-	margin-top: 250px;
+	margin-top: 150px;
 	text-align: center;
 	margin-bottom: 300px;
 }
 
-/*Index*/
 .topbar .row {
 	background-color: #0099ff;
 	font-size: 35px;
 	color: #f2f2f2;
 	height: 60px;
-}
-
-.topbar .appname {
-	text-align: center;
-}
-
-.sidenav .row .menu {
-	display: flex;
-	flex-direction: column;
-	background-color: #0099ff;
-}
-
-.sidenav a {
-	text-decoration: none;
-	color: f2f2f2;
-	font-size: 25px;
-	border-bottom: 0.5px solid #f2f2f2;
-}
-
-.sidenav .row {
-	height: 85%;
-}
-
-.menu a:hover {
-	color: black;
-}
-
-.menu a:active {
-	color: coral;
-}
-
-.content {
-	text-align: center;
-	font-size: 30px;
-	margin-top: 300px;
 }
 
 .footer {
@@ -91,107 +52,6 @@
 	margin-top: 10px;
 }
 
-/*Add ACtivity*/
-.content-addactivity p {
-	font-size: 30px;
-	margin-top: 30px;
-}
-
-.content-addactivity label {
-	font-size: 20px;
-	margin-top: 30px;
-}
-
-.content-addactivity input {
-	margin-top: 30px;
-}
-
-/*Apdate ACtivity*/
-.content-updateactivity p {
-	font-size: 30px;
-	margin-top: 30px;
-}
-
-table {
-	margin-top: -50px;
-	width: 100%;
-}
-
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-
-table th {
-	text-align: center;
-	background-color: #0099ff;
-}
-
-table tr:nth-child(odd) {
-	background-color: #0099ff15;
-}
-
-table tr {
-	height: 40px;
-}
-
-.update-button .delete-button {
-	border-radius: 4px;
-	background-color: #0099ff;
-	height: 30px;
-	width: 80px;
-	font-size: 15px;
-}
-
-.delete-button {
-	border-radius: 4px;
-	background-color: #0099ff;
-	height: 30px;
-	width: 80px;
-	font-size: 15px;
-}
-
-button-data a {
-	text-align: center;
-}
-
-/*view activity*/
-.content-viewactivity p {
-	font-size: 30px;
-	margin-top: 30px;
-}
-
-table {
-	margin-top: -50px;
-	width: 100%;
-}
-
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-
-table th {
-	text-align: center;
-	background-color: #0099ff;
-}
-
-table tr:nth-child(odd) {
-	background-color: #0099ff15;
-}
-
-table tr {
-	height: 40px;
-}
-
-/*Login errot*/
-button .try-again-button {
-	border-radius: 4px;
-	background-color: #0099ff;
-	height: 30px;
-	width: 80px;
-	font-size: 15px;
-}
 </style>
 
 <title>Invalid Login</title>
@@ -226,13 +86,4 @@ button .try-again-button {
 				</div>
 			</div>
 		</div>
-		<!--footer-->
-		<div class="footer">
-			<div class="row">
-				<div class="made col">Developed by M@are</div>
-			</div>
-		</div>
-	</div>
-</body>
-
-</html>
+		<%@include file="./header_footer/footer.jsp" %>

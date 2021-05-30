@@ -240,13 +240,4 @@ button .try-again-button {
 				
 			</form>
 		</div>
-		<!--footer-->
-		<div class="footer">
-			<div class="row">
-				<div class="made col">Developed by M@are</div>
-			</div>
-		</div>
-	</div>
-</body>
-
-</html>
+		        <%@include file="./header_footer/footer.jsp" %>
