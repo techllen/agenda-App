@@ -3,6 +3,7 @@ package com.techllenapps.agendaapp.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.sql.DataSource;
 import com.techllenapps.agendaapp.entity.Activity;
 
 public class ActivityOperationDao {
@@ -31,7 +32,6 @@ public class ActivityOperationDao {
 
 		try {
 			//registering JDBC Driver
-
 			Class.forName(JDBC_DRIVER);
 
 			//opening a connection
@@ -68,24 +68,28 @@ public class ActivityOperationDao {
 	}
     //activities will be selected basing on a specific user on the session
 	//by passing usrname to this method for selection
-	public ArrayList<Activity> viewActivity(String userName){
+	public ArrayList<Activity> viewActivity(String userName,DataSource dataSource){
 		//Local connection object
 		ArrayList<Activity> activities = new ArrayList<Activity>();
 		String specificUserName = userName;
 		ResultSet rs = null;
 		try {
 			//registering JDBC Driver
-			Class.forName(JDBC_DRIVER);
+//			Class.forName(JDBC_DRIVER);
+//			Class.forName(driverClassName);
+
 
 			//opening a connection
-			connection = DriverManager.getConnection(DB_URL,USER,PASS);
+			//connection = DriverManager.getConnection(DB_URL,USER,PASS);
+			connection = dataSource.getConnection();
 
 			//making a  prepared statement and executing a query
 			String sqlq= "SELECT * FROM activities WHERE username = ?";
 			stmt= connection.prepareStatement(sqlq);
 			stmt.setString(1, specificUserName);
 
-			//selecting all records
+			//selecting all recordsClass.forName(JDBC_DRIVER);
+//			Class.forName(driverClassName);
 			rs = stmt.executeQuery();
 			
 			//extracting data from resultset and bind them to the activity object
@@ -97,9 +101,6 @@ public class ActivityOperationDao {
 		}catch(SQLException se){
 			//Handle errors for JDBC
 			se.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// handles error for JDBC driver class
-			e.printStackTrace();
 		}
 		return activities;
 

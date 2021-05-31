@@ -1,18 +1,21 @@
 package com.techllenapps.agendaapp.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 import com.techllenapps.agendaapp.entity.Activity;
 import com.techllenapps.agendaapp.model.ActivityOperationDao;
@@ -25,10 +28,13 @@ import com.techllenapps.agendaapp.model.ActivityOperationDao;
 @WebServlet("/")
 public class OperationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private DataSource dataSource;
+	@Resource(name = "jdbc/agendaapp")
+	
 	ActivityOperationDao aact = new ActivityOperationDao();
 	public String username;
-
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//we are switching functions according to form names
 		String action = request.getServletPath();
@@ -168,7 +174,7 @@ public class OperationController extends HttpServlet {
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
 		//getting username parameter to select activities of a specific user
 		String username = (String)request.getParameter("username");
-		listedactivities =new ActivityOperationDao().viewActivity(username);
+		listedactivities =new ActivityOperationDao().viewActivity(username,dataSource);
 		request.setAttribute("listedactivities", listedactivities);
 		System.out.println(username);
 		try {
@@ -185,7 +191,7 @@ public class OperationController extends HttpServlet {
 		//getting username parameter to select activities of a specific user
 		String username = (String)request.getParameter("username");
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
-		listedactivities =new ActivityOperationDao().viewActivity(username);
+		listedactivities =new ActivityOperationDao().viewActivity(username,dataSource);
 		request.setAttribute("listedactivities", listedactivities);
 		try {
 			request.getRequestDispatcher("updateactivity.jsp").forward(request, response);
