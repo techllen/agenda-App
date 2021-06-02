@@ -34,16 +34,18 @@ public class RegisterController extends HttpServlet {
 			user.setUsername(email);
 			user.setUsername(username);
 			user.setPassword(password);
-			//calling the dao method to add the user to the database and 
+			
+			//calling the Dao method to add the user to the database and 
 			//check if the user has been added
 			//using the executeUpdate method
 			try {
 				if (registerdao.regsiterUser(user)==1) {
 					//after adding the user and validating if the user has been added
 					//set the session which will include attribute for this user to enable
-					//loggoff
+					//logging out
 					HttpSession session = request.getSession();
 					session.setAttribute("user", user);
+					
 					//after validating open the home page for the user
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}

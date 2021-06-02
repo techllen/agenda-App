@@ -4,7 +4,7 @@
                 <div class="col-sm-10">
                     <div class="content-addactivity">
                         <p>Whats on your mind for today</p>
-                        <form action="${pageContext.request.contextPath}/validatedate" method="get">
+                        <form action="${pageContext.request.contextPath}/addactivityformvalidate" method="get">
                         	<label for="tittle">Please enter the name of the activity</label><br>
                             <input style="height: 30px;" id="tittle" name="tittle" maxlength="50" size="50" required><br>
                             <label for="description">Please describe what you are planning to do</label><br>

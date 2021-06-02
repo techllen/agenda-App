@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
 import com.techllenapps.agendaapp.entity.Activity;
 import com.techllenapps.agendaapp.model.ActivityOperationDao;
 
@@ -28,15 +25,12 @@ import com.techllenapps.agendaapp.model.ActivityOperationDao;
 @WebServlet("/")
 public class OperationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private DataSource dataSource;
-	@Resource(name = "jdbc/agendaapp")
-	
+
 	ActivityOperationDao aact = new ActivityOperationDao();
 	public String username;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//we are switching functions according to form names
+		//we are switching functions according to paths to the servlet
 		String action = request.getServletPath();
 		action = action.toLowerCase();
 
@@ -44,14 +38,14 @@ public class OperationController extends HttpServlet {
 		case "/home":
 			home(request,response);
 			break;
-			
+
 		case "/addactivity":
 			addActivity(request,response);
 			break;
 
-//		case "/addactivityform":
-//			addActivityForm(request,response);
-//			break;
+		case "/addactivityformvalidate":
+			addActivityFormValidate(request,response);
+			break;
 
 		case "/updateactivity":
 			updateActivity(request,response);
@@ -70,57 +64,17 @@ public class OperationController extends HttpServlet {
 		case "/delete":
 			delete(request,response);
 
-		case "/validatedate":
-			//getting parameters from the form
-			//username parameter is used so that we can know which activity  is related to which user
-			String usernameToActivity =request.getParameter("username");
-			String tittle = request.getParameter("tittle");
-			String description = request.getParameter("description");
-			//converting dates using simple date format
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-			//getting date parameters from the form
-			String startDate = request.getParameter("startdate");
-			String endDate = request.getParameter("enddate");
-			//parsing
-			Date startDatefmtd=null;
-			Date endDatefmtd=null;
-			try {
-				startDatefmtd = formatter.parse(startDate);
-				endDatefmtd= formatter.parse(endDate);
-				//Today's date
-				Date date = new Date();
-				formatter.format(date);
-				//end date is greater than or equal to start date 
-				//start date is greater than or equal to today
-				if((endDatefmtd.compareTo(startDatefmtd)>0)) {
-//						||(endDatefmtd.compareTo(startDatefmtd)==0))
-//						&&
-//						((startDatefmtd.compareTo(today)==0)||(startDatefmtd.compareTo(today)>0))) {
-					//setting parameters to the object using constructor
-					Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
-
-					//validating and adding activity
-					//if the activity is added go back to the add activity page
-					try {
-						if (aact.addActivity(act,usernameToActivity)==1) {
-							home(request, response);				}
-						else {
-							error(request,response);
-						}
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}else {
-					String endDateError = "something is wrong with the end date";
-					request.setAttribute("endDateError", endDateError);
-				}
-			}catch (ParseException e) {
-				e.printStackTrace();
-			}
 		default:
 			error(request,response);
 			break;
+		}
+	}
+	
+	private void home(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -132,57 +86,58 @@ public class OperationController extends HttpServlet {
 		}
 	}
 
-//	private void addActivityForm(HttpServletRequest request, HttpServletResponse response) {
-//		//getting parameters from the form
-//		String tittle = request.getParameter("tittle");
-//		String description = request.getParameter("description");
-//		//converting dates
-//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-//		//getting date parameters from the form
-//		String startDate = request.getParameter("startdate");
-//		String endDate = request.getParameter("enddate");
-//		//parsing
-//		Date startDatefmtd=null;
-//		Date endDatefmtd=null;
-//		try {
-//			startDatefmtd = formatter.parse(startDate);
-//			endDatefmtd= formatter.parse(endDate);
-//
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//
-//		//setting parameters to the object using constructor
-//		Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
-//
-//		//validating and adding activity
-//		//if the activity is added go back to the add activity page
-//		try {
-//			if (aact.addActivity(act)==1) {
-//				home(request, response);				}
-//			else {
-//				error(request,response);
-//			}
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-
-	private String viewActivity(HttpServletRequest request, HttpServletResponse response) {
-
-		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
-		//getting username parameter to select activities of a specific user
-		String username = (String)request.getParameter("username");
-		listedactivities =new ActivityOperationDao().viewActivity(username,dataSource);
-		request.setAttribute("listedactivities", listedactivities);
-		System.out.println(username);
+	private void addActivityFormValidate(HttpServletRequest request, HttpServletResponse response) {
+		//getting parameters from the form
+		//username parameter is used so that we can know which activity  is related to which user
+		String usernameToActivity =request.getParameter("username");
+		String tittle = request.getParameter("tittle");
+		String description = request.getParameter("description");
+		
+		//converting dates using simple date format
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+		
+		//getting date parameters from the form
+		String startDate = request.getParameter("startdate");
+		String endDate = request.getParameter("enddate");
+		
+		//parsing
+		Date startDatefmtd=null;
+		Date endDatefmtd=null;
 		try {
-			request.getRequestDispatcher("viewactivity.jsp").forward(request, response);
-		} catch (Exception e) {
+			startDatefmtd = formatter.parse(startDate);
+			endDatefmtd= formatter.parse(endDate);
+			
+			//Today's date
+			Date date = new Date();
+			formatter.format(date);
+			
+			//end date is greater than or equal to start date 
+			//start date is greater than or equal to today
+			if((endDatefmtd.compareTo(startDatefmtd)>0)) {
+				//					||(endDatefmtd.compareTo(startDatefmtd)==0))
+				//					&&
+				//					((startDatefmtd.compareTo(today)==0)||(startDatefmtd.compareTo(today)>0))) {
+				//setting parameters to the object using constructor
+				Activity act = new Activity(tittle, description, startDatefmtd, endDatefmtd);
+
+				//validating and adding activity
+				//if the activity is added go back to the add activity page
+				try {
+					if (aact.addActivity(act,usernameToActivity)==1) {
+						home(request, response);				}
+					else {
+						error(request,response);
+					}
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}else {
+				String endDateError = "something is wrong with the end date";
+				request.setAttribute("endDateError", endDateError);
+			}
+		}catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return username;
 	}
 
 	private void updateActivity(HttpServletRequest request, HttpServletResponse response) {
@@ -191,7 +146,7 @@ public class OperationController extends HttpServlet {
 		//getting username parameter to select activities of a specific user
 		String username = (String)request.getParameter("username");
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
-		listedactivities =new ActivityOperationDao().viewActivity(username,dataSource);
+		listedactivities =new ActivityOperationDao().viewActivity(username);
 		request.setAttribute("listedactivities", listedactivities);
 		try {
 			request.getRequestDispatcher("updateactivity.jsp").forward(request, response);
@@ -211,7 +166,6 @@ public class OperationController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	private void update(HttpServletRequest request, HttpServletResponse response) {
@@ -219,11 +173,14 @@ public class OperationController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String tittle = request.getParameter("tittle");
 		String description = request.getParameter("description");
+		
 		//converting dates
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+		
 		//getting date parameters from the form
 		String startDate = request.getParameter("startdate");
 		String endDate = request.getParameter("enddate");
+		
 		//parsing
 		Date startDatefmtd=null;
 		Date endDatefmtd=null;
@@ -256,7 +213,6 @@ public class OperationController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		try {
 			int deletedRows = new ActivityOperationDao().deleteActivity(id);
-
 			if (deletedRows==1) {
 				home(request, response);
 			}else {
@@ -265,25 +221,31 @@ public class OperationController extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
-
 	}
+	
+	private String viewActivity(HttpServletRequest request, HttpServletResponse response) {
+
+		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
+		//getting username parameter to select activities of a specific user
+		String username = (String)request.getParameter("username");
+		listedactivities =new ActivityOperationDao().viewActivity(username);
+		request.setAttribute("listedactivities", listedactivities);
+		try {
+			request.getRequestDispatcher("viewactivity.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return username;
+	}
+	
 	private void error(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	private void home(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
@@ -293,5 +255,4 @@ public class OperationController extends HttpServlet {
 		//ActivityOperationDao act = new ActivityOperationDao();
 		//System.out.println(act.viewActivity());
 	}
-
 }
