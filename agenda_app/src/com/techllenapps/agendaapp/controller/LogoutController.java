@@ -25,16 +25,12 @@ public class LogoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Invalidating user session which will terminate the user user
 		HttpSession session = request.getSession(false);
-
 		if(session != null) {
 			session.removeAttribute("user");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-
 		else {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-
 	}
-
 }

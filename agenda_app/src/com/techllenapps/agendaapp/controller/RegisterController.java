@@ -47,14 +47,15 @@ public class RegisterController extends HttpServlet {
 					session.setAttribute("user", user);
 					
 					//after validating open the home page for the user
+					request.setAttribute("title", "Agenda App");
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 				else {
 					//go to error if anything goes wrong
+					request.setAttribute("title", "Error page");
 					request.getRequestDispatcher("error.jsp").forward(request, response);
 				}
 			} catch (ClassNotFoundException | ServletException | IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;

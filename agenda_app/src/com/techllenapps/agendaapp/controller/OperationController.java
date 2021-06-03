@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.techllenapps.agendaapp.entity.Activity;
 import com.techllenapps.agendaapp.model.ActivityOperationDao;
 
-
-
 /**
  * THE-Allen
  */
@@ -79,6 +77,7 @@ public class OperationController extends HttpServlet {
 	}
 
 	private void addActivity(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("title", "Add Activity");
 		try {
 			request.getRequestDispatcher("addactivity.jsp").forward(request, response);
 		} catch (Exception e) {
@@ -144,6 +143,7 @@ public class OperationController extends HttpServlet {
 		//extracting data from database and display on update activity page using method viewActivity 
 		//in activity operation dao
 		//getting username parameter to select activities of a specific user
+		request.setAttribute("title", "Update Activity");
 		String username = (String)request.getParameter("username");
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
 		listedactivities =new ActivityOperationDao().viewActivity(username);
@@ -156,6 +156,7 @@ public class OperationController extends HttpServlet {
 	}
 
 	private void updateActivityPage(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("title", "Update Activities Page");
 		int id = Integer.parseInt(request.getParameter("id"));
 		Activity activityToDisplay= new Activity();
 		activityToDisplay = new ActivityOperationDao().selectActivityToDisplay(id);	
@@ -224,7 +225,7 @@ public class OperationController extends HttpServlet {
 	}
 	
 	private String viewActivity(HttpServletRequest request, HttpServletResponse response) {
-
+		request.setAttribute("title", "View Activities");
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
 		//getting username parameter to select activities of a specific user
 		String username = (String)request.getParameter("username");
@@ -239,6 +240,7 @@ public class OperationController extends HttpServlet {
 	}
 	
 	private void error(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("title", "Error page");
 		try {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {

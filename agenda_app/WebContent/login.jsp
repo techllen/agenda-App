@@ -55,7 +55,7 @@
 }
 
 </style>
-<title>AgendaApp</title>
+<title>AgendaApp Login</title>
 </head>
 <body>
 	<!-- intro bar -->

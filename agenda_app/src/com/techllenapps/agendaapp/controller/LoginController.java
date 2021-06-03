@@ -37,23 +37,24 @@ public class LoginController extends HttpServlet {
 			//calling the dao method to validate the user the
 			//the method logindao returns false when only unique row for the user is present
 			//using the .next method
+			
 			if (logindao.validatelogin(user)==false) {
 				//after validating set the session which will include attribute for this user
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
+				
 				//after validating open the home page for the user
+				request.setAttribute("title", "Agenda App");
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 			else {
+				request.setAttribute("title", "Error page");
 				request.getRequestDispatcher("loginerror.jsp").forward(request, response);
 			}
 			break;
 
-		case "register":
-			//register(request,response);
-			break;
-
 		default:
+			request.setAttribute("title", "Error page");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}

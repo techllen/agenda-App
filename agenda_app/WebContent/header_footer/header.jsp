@@ -199,7 +199,6 @@ button .try-again-button {
 }
 </style>
 
-<title>Update Activity</title>
 </head>
 
 <body>
@@ -236,5 +235,5 @@ button .try-again-button {
                     <a href="<%=request.getContextPath()%>/addactivity">Add Activity</a>
                     <a href="<%=request.getContextPath()%>/updateactivity?username=<c:out value="${user.username}"/>">Update Activity</a>
                     <a href="<%=request.getContextPath()%>/viewactivity?username=<c:out value="${user.username}"/>"> View Activities</a>
-                    <a href="<%=request.getContextPath()%>/logout">Logout</a> 
+                    <a href="<%=request.getContextPath()%>/administration?task=<c:out value="logout"/>">Logout</a> 
 				</div>

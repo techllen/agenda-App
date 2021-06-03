@@ -223,8 +223,7 @@ button .try-again-button {
 			<br>
 			<p>Please enter your email,username and password to register</p>
 			<br>
-			<form action="${pageContext.request.contextPath}/register"
-				method="post">
+			<form action="${pageContext.request.contextPath}/register" method="post">
 				<label for="email">Email address</label><br>
 				<br> <input type="email" id="email" name="email" required><br>
 				<br> <label for="username">Username</label><br>
