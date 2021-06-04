@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="com.techllenapps.agendaapp.controller.LogoutController" project="agenda_app" 
+    file="/agenda_app/src/com/techllenapps/agendaapp/controller/LogoutController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="169" width="282" x="312" y="-15"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.techllenapps.agendaapp.controller.RegisterController" project="agenda_app" 
+    file="/agenda_app/src/com/techllenapps/agendaapp/controller/RegisterController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="151" width="286" x="634" y="-15"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.techllenapps.agendaapp.controller.LoginController" project="agenda_app" 
+    file="/agenda_app/src/com/techllenapps/agendaapp/controller/LoginController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="187" width="286" x="960" y="-15"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.techllenapps.agendaapp.controller.OperationController" project="agenda_app" 
+    file="/agenda_app/src/com/techllenapps/agendaapp/controller/OperationController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="349" width="366" x="1286" y="-15"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

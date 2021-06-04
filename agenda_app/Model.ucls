@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.techllenapps.agendaapp.model.ActivityOperationDao" project="agenda_app" 
+    file="/agenda_app/src/com/techllenapps/agendaapp/model/ActivityOperationDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="295" width="204" x="301" y="53"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.techllenapps.agendaapp.model.RegisterDao" project="agenda_app" 
+    file="/agenda_app/src/com/techllenapps/agendaapp/model/RegisterDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="169" width="159" x="545" y="53"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.techllenapps.agendaapp.model.LoginDao" project="agenda_app" 
+    file="/agenda_app/src/com/techllenapps/agendaapp/model/LoginDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="169" width="159" x="744" y="53"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
