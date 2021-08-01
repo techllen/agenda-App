@@ -233,7 +233,7 @@ button .try-again-button {
 					<!-- page names will determine which operation is being executed by JSP -->
 					<a href="<%=request.getContextPath()%>/home">Agenda App</a>
                     <a href="<%=request.getContextPath()%>/addactivity">Add Activity</a>
-                    <a href="<%=request.getContextPath()%>/updateactivity?username=<c:out value="${user.username}"/>">Update Activity</a>
-                    <a href="<%=request.getContextPath()%>/viewactivity?username=<c:out value="${user.username}"/>"> View Activities</a>
+                    <a href="<%=request.getContextPath()%>/updateactivity?filter=<c:out value="${user.username}"/>">Update Activity</a>
+                    <a href="<%=request.getContextPath()%>/viewactivity?filter=<c:out value="${user.username}"/>"> View Activities</a>
                     <a href="<%=request.getContextPath()%>/logout">Logout</a> 
 				</div>

@@ -144,9 +144,9 @@ public class OperationController extends HttpServlet {
 		//in activity operation dao
 		//getting username parameter to select activities of a specific user
 		request.setAttribute("title", "Update Activity");
-		String username = (String)request.getParameter("username");
+		String filter = (String)request.getParameter("filter");
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
-		listedactivities =new ActivityOperationDao().viewActivity(username);
+		listedactivities =new ActivityOperationDao().viewActivity(filter);
 		request.setAttribute("listedactivities", listedactivities);
 		try {
 			request.getRequestDispatcher("updateactivity.jsp").forward(request, response);
@@ -228,8 +228,8 @@ public class OperationController extends HttpServlet {
 		request.setAttribute("title", "View Activities");
 		ArrayList<Activity> listedactivities = new ArrayList<Activity>();
 		//getting username parameter to select activities of a specific user
-		String username = (String)request.getParameter("username");
-		listedactivities =new ActivityOperationDao().viewActivity(username);
+		String filter = (String)request.getParameter("filter");
+		listedactivities =new ActivityOperationDao().viewActivity(filter);
 		request.setAttribute("listedactivities", listedactivities);
 		try {
 			request.getRequestDispatcher("viewactivity.jsp").forward(request, response);
